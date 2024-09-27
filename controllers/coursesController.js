@@ -50,36 +50,6 @@ const createCourse = async (req, res) => {
   }
 };
 
-// const createCourse = async (req, res) => {
-//   // if (!req.file) {
-//   //   return res.status(400).json({ error: "No file uploaded" });
-//   // }
-
-//   const { title, price, description, topic } = req.body;
-//   if (!title || !price || !description || !(topic in Topic)) {
-//     return res.status(400).json({ error: "All fields are required" });
-//   }
-
-//   const user = await User.findById(req.user._id);
-//   if (!(user.role == Role.INSTRUCTOR)) {
-//     return res.status(401).json({ error: "Not authorized" });
-//   }
-
-//   try {
-//     const course = await Course.create({
-//       userId: user._id,
-//       picture: req.file.path, // Storing the local file path
-//       title,
-//       price,
-//       topic,
-//       description,
-//     });
-//     return res.status(200).json({ course });
-//   } catch (error) {
-//     return res.status(500).json({ error: error.message });
-//   }
-// };
-
 
 // Instructor's courses
 const getUserCourses = async (req, res) => {
