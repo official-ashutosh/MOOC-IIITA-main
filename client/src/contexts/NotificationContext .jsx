@@ -11,7 +11,7 @@ const NotificationProvider = ({ children }) => {
     setNotification({ message, type });
     setTimeout(() => {
       setNotification(null);
-    }, 3000); // Thông báo tự động biến mất sau 3 giây
+    }, 3000); //  tự động biến mất sau 3 giây
   };
 
   return (

@@ -1,3 +1,4 @@
+// Cloudinary is a cloud-based service for managing images and videos.
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({

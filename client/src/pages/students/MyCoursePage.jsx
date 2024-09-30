@@ -30,7 +30,7 @@ const MyCoursePage = () => {
         );
         setCourses(coursesWithReviews);
       } catch (error) {
-        setError("Lỗi khi tải khóa học: " + error.message);
+        setError("Error When loading the Course: " + error.message);
       }
       setLoading(false);
     };

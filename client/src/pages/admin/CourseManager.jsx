@@ -174,7 +174,7 @@ const CourseManager = () => {
           autohide
         >
           <Toast.Header>
-            <strong className="me-auto">Thông Báo</strong>
+            <strong className="me-auto">Notification</strong>
             <small>Just now</small>
           </Toast.Header>
           <Toast.Body style={{ color: "white" }}>{toastMessage}</Toast.Body>

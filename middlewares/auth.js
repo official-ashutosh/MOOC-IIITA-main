@@ -2,12 +2,16 @@ import jwt from "jsonwebtoken";
 import "dotenv/config.js";
 import User from "../models/UserModel.js";
 
+
 const auth = async (req, res, next) => {
   //check if the header contain the key authorization (token)
+  // This extracts the authorization header from the request.
+  // The authorization header typically contains the JWT in the format: Bearer <token>.
   const { authorization } = req.headers;
 
   if (!authorization) {
-    return res.status(401).json({ error: "You must be logged in!" }); //when user login, they will have token
+     //when user login, they will have token
+    return res.status(401).json({ error: "You must be logged in!" });
   }
 
   // Grab the token from the header (Bearer token)
@@ -15,6 +19,7 @@ const auth = async (req, res, next) => {
 
   try {
     // Decode and extract the user id from token
+    // secret jiske pass hai wo token se id get kar skta hai user ki.
     const { _id } = jwt.verify(token, process.env.SECRET);
 
     //save the user in the req object

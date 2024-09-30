@@ -29,6 +29,7 @@ router.post("/create-course", auth, upload.single("picture"), createCourse);
 
 // update course intro
 router.put(
+  // /update-course-intro/66f239ba759c207208d59749
   "/update-course-intro/:id",
   auth,
   upload.single("picture"),

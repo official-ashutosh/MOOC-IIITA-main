@@ -48,7 +48,7 @@ const CoursePage = () => {
     }
     try {
       const result = await addToCart(courseId);
-      setToastMessage("Thêm vào giỏ hàng thành công!");
+      setToastMessage("Successfully Added to Cart!");
       setToastType("success");
       setShowToast(true);
       setTimeout(() => setShowToast(false), 5000);
@@ -83,7 +83,7 @@ const CoursePage = () => {
           autohide
         >
           <Toast.Header>
-            <strong className="me-auto">Thông Báo</strong>
+            <strong className="me-auto">Notification</strong>
             <small>Just now</small>
           </Toast.Header>
           <Toast.Body>{toastMessage}</Toast.Body>

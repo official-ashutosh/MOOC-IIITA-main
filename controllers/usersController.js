@@ -35,6 +35,7 @@ const registerUser = async (req, res) => {
 
   const user = await User.findOne({ email });
 
+  // email should be unique.
   if (user) {
     res
       .status(400)
@@ -312,6 +313,7 @@ const forgotPassword = async (req, res) => {
         },
       });
       // http://localhost:3000/reset-password/${user._id}/${token}
+      // token is genrater by jwt.
       var mailOptions = {
         from: `MOOC@ IIITA​" <${process.env.EMAIL_USER}>`, // email that send
         to: `${email}`,

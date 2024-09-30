@@ -319,7 +319,7 @@ const findCourse = async (req, res) => {
     });
 
     if (!course) {
-      return res.status(404).json({ message: "Không tìm thấy khóa học" });
+      return res.status(404).json({ message: "Course Not Found" });
     }
 
     res.status(200).json({ course });
