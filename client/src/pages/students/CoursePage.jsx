@@ -143,7 +143,7 @@ const CoursePage = () => {
           <div className="d-sm-flex align-items-center justify-content-between">
             <div>
               <h1>
-                <span className="text-warning">COOKI</span>EDU Courses
+                <span className="text-warning">MOOC</span>@IIITA Courses
               </h1>
               <p className="lead my-4">
                 Choosing suitable courses is essential for connecting with the

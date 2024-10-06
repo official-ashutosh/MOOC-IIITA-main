@@ -20,7 +20,7 @@ import {
 import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import Role from "../../../../models/RoleEnum";
-import logo from "../../../images/cookiedu_logo.png";
+import logo from "../../../images/MOOC@IIITA_logo.png";
 
 const Login = () => {
   const { setUser } = useContext(UserContext);
@@ -152,7 +152,7 @@ const Login = () => {
             Login Page <br />
             <span className="text-dark-emphasis">
               for accessing the{" "}
-              <span className="text-warning fw-bold">COOKIEDU</span> website
+              <span className="text-warning fw-bold">MOOC@IIITA</span> website
             </span>
           </h1>
 

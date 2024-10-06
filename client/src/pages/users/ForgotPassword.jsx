@@ -15,7 +15,7 @@ import { checkEmailUser } from "../../services/usersService";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { set } from "mongoose";
-import logo from "../../../images/cookiedu_logo.png";
+import logo from "../../../images/MOOC@IIITA_logo.png";
 import successImg from "../../../images/success.png";
 
 const ForgotPassword = () => {

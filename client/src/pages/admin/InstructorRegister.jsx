@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 import AdminNavBar from "../../Components/AdminNavBar";
 import Role from "../../../../models/RoleEnum";
 import Alert from "../../Components/Alert";
-import logo from "../../../images/cookiedu_logo.png";
+import logo from "../../../images/MOOC@IIITA_logo.png";
 
 const InstructorRegister = () => {
   const [success, setSuccess] = useState(null);

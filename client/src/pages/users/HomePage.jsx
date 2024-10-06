@@ -50,7 +50,7 @@ const HomePage = () => {
         <div className="container">
           <div className="d-md-flex justify-content-between align-items-center">
             <h2 className="mb-3 mb-md-0">
-              <span className="text-warning">COOKI</span>EDU - Join Us Now!
+              <span className="text-warning">MOOC</span>@IIITA - Join Us Now!
             </h2>
           </div>
         </div>

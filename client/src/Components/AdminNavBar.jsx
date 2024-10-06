@@ -16,7 +16,7 @@ import { IoLogOut } from "react-icons/io5";
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { Button, Image, Modal, Navbar } from "react-bootstrap";
-import logo from "../../images/cookiedu_logo.png";
+import logo from "../../images/MOOC@IIITA_logo.png";
 import "../styles/sidebar.css";
 
 const AdminNavBar = () => {
@@ -69,14 +69,14 @@ const AdminNavBar = () => {
                 className="text-warning text-center text-lg-start "
                 style={{ fontSize: "30px" }}
               >
-                COOKI
+                MOOC
               </span>
               <span
                 className="text-light text-center text-lg-start"
                 style={{ fontSize: "30px" }}
               >
                 {" "}
-                EDU{" "}
+                @IIITA{" "}
               </span>
             </Navbar.Brand>
             <Menu

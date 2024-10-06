@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { checkOTPUser } from "../../services/usersService";
 import Alert from "../../Components/Alert";
 import { Modal } from "react-bootstrap";
-import logo from "../../../images/cookiedu_logo.png";
+import logo from "../../../images/MOOC@IIITA_logo.png";
 import successImg from "../../../images/success.png";
 
 const OTPInput = () => {

@@ -12,7 +12,7 @@ import InstructorLayout from "../Components/InstructorLayout";
 import AdminLayout from "../Components/AdminLayout.jsx";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
-import logo from "../../images/cookiedu_logo.png";
+import logo from "../../images/MOOC@IIITA_logo.png";
 import StudentLayout from "../Components/StudentLayout.jsx";
 import { Modal } from "react-bootstrap";
 
@@ -55,7 +55,7 @@ const Layout = () => {
             ) : (
               <Navbar.Brand href="/">
                 <Image width="40" src={logo} />
-                <span className="text-warning">COOKI</span>EDU
+                <span className="text-warning">MOOC</span>@IIITA
               </Navbar.Brand>
             )}
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -98,7 +98,7 @@ const Layout = () => {
                       <Nav.Link href="/list-courses">List Courses</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link href="#action">Teach on COOKIEDU</Nav.Link>
+                      <Nav.Link href="#action">Teach on MOOC@IIITA</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link href="/login" className="text-warning">

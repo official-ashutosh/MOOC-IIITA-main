@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 import { set } from "mongoose";
 import { Modal } from "react-bootstrap";
-import logo from "../../../images/cookiedu_logo.png";
+import logo from "../../../images/MOOC@IIITA_logo.png";
 import success from "../../../images/success.png";
 
 const ResetPassword = () => {

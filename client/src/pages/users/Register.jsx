@@ -13,7 +13,7 @@ import {
   Button,
   InputGroup,
 } from "react-bootstrap";
-import logo from "../../../images/cookiedu_logo.png";
+import logo from "../../../images/MOOC@IIITA_logo.png";
 
 const Register = () => {
   const [error, setError] = useState(null);
