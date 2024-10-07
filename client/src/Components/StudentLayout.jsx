@@ -14,7 +14,7 @@ const StudentLayout = () => {
         if (data) {
           setCartItems(data.courseDetails);
           const count = data.courseDetails.length;
-          setItemCount(count); // Cập nhật số lượng mặt hàng
+          setItemCount(count); 
         }
       } catch (error) {
         console.error("Error fetching data: ", error);

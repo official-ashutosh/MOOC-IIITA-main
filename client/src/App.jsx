@@ -141,6 +141,7 @@ const App = () => {
           <Route element={<GuestRoutes />}>
             <Route path="/list-courses" element={<CoursePage />}></Route>
             <Route path="/login" element={<Login />} />
+            {/* <Route path="/my-course" element={<MyCoursePage />}></Route> */}
             <Route path="/register" element={<Register />} />
             <Route path="/otp-authentication" element={<OTPInput />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
