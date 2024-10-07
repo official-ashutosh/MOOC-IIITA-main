@@ -34,7 +34,7 @@ const HomePage = () => {
                 skills for our students, from basic to advanced, tailored to
                 each appropriate age group.
               </p>
-              <a href="/list-courses" className="btn btn-primary btn-lg">
+              <a href="/register" className="btn btn-primary btn-lg">
                 Get Started
               </a>
             </div>

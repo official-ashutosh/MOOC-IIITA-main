@@ -49,13 +49,15 @@ const Layout = () => {
           <Container className="py-2">
             {user.role == Role.INSTRUCTOR ? (
               <Navbar.Brand href="/">
-                <Image width="40" src={logo} />
-                My <span className="text-warning">Created</span> Courses
+                <Image width="45" src={logo} />
+                <span className="text-warning" style={{ fontSize: '24px' }}> MOOC</span>
+                <span className="ak2" style={{ fontSize: '24px' }}>@IIITA</span>
               </Navbar.Brand>
             ) : (
               <Navbar.Brand href="/">
-                <Image width="40" src={logo} />
-                <span className="text-warning">MOOC</span>@IIITA
+                <Image width="45" src={logo} />
+                <span className="text-warning" style={{ fontSize: '24px' }}> MOOC</span>
+                <span className="ak2" style={{ fontSize: '24px' }}>@IIITA</span>
               </Navbar.Brand>
             )}
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -98,7 +100,7 @@ const Layout = () => {
                       <Nav.Link href="/list-courses">List Courses</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link href="#action">Teach on MOOC@IIITA</Nav.Link>
+                      <Nav.Link href="instructor_apply.html" target="_blank">Teach on MOOC@IIITA</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link href="/login" className="text-warning">

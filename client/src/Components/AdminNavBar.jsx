@@ -60,25 +60,26 @@ const AdminNavBar = () => {
       <div style={{ display: "flex", height: "100%", width: "100%" }}>
         <div style={{ display: "flex", height: "100%", width: "100%" }}>
           <Sidebar backgroundColor="#212529" className="sidebar" width="300px">
-            <Navbar.Brand
-              href="/"
-              className="d-flex justify-content-center align-items-center mb-7s mb-3 mt-3"
+          <Navbar.Brand
+            href="/"
+            className="d-flex justify-content-center align-items-center mb-7s mb-3 mt-3"
+          >
+            <Image width={"50px"} height={"50px"} src={logo} />
+            <span
+              className="text-warning text-center text-lg-start ms-3"  // Added ms-3 here for space
+              style={{ fontSize: "30px" }}
             >
-              <Image width={"40px"} height={"40px"} src={logo} />
-              <span
-                className="text-warning text-center text-lg-start "
-                style={{ fontSize: "30px" }}
-              >
-                MOOC
-              </span>
-              <span
-                className="text-light text-center text-lg-start"
-                style={{ fontSize: "30px" }}
-              >
-                {" "}
-                @IIITA{" "}
-              </span>
-            </Navbar.Brand>
+              MOOC
+            </span>
+            <span
+              className="text-light text-center text-lg-start"
+              style={{ fontSize: "30px" }}
+            >
+              {" "}
+              @IIITA{" "}
+            </span>
+          </Navbar.Brand>
+
             <Menu
               closeOnClick
               menuItemStyles={{

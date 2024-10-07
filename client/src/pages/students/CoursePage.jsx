@@ -138,49 +138,7 @@ const CoursePage = () => {
         </div>
       )}     */}
       {renderToast()}
-      <section className="bg-dark text-light p-lg-0 pt-lg-5 text-center text-sm-start">
-        <div className="container">
-          <div className="d-sm-flex align-items-center justify-content-between">
-            <div>
-              <h1>
-                <span className="text-warning">MOOC</span>@IIITA Courses
-              </h1>
-              <p className="lead my-4">
-                Choosing suitable courses is essential for connecting with the
-                world of technology:
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>1. </b>
-                Explore programming languages for software development.
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>2.</b> Dive into data science for valuable insights.
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>3.</b> Learn about emerging technologies like AI and
-                cybersecurity.
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>4.</b> Gain skills in digital marketing for global
-                connectivity.
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>5. </b>
-                Explore entrepreneurship for leveraging technology in business.
-              </p>
-              <p className="my-4">
-                By selecting courses strategically, individuals can bridge the
-                gap between aspirations and achievements in the tech industry,
-                shaping a brighter future together.
-              </p>
-            </div>
-            <img
-              className="img-fluid w-50 d-none d-sm-block d-md-block"
-              src={imgSample}
-            />
-          </div>
-        </div>
-      </section>
+      
       <section className="bg-primary text-light p-5">
         <div className="container">
           <div className="row">
@@ -311,6 +269,8 @@ const CoursePage = () => {
           )}
         </div>
       </section>
+
+      
       {!loading && pages.length > 0 && (
         <div className="d-flex justify-content-center">
           <ul className="pagination">
@@ -363,6 +323,50 @@ const CoursePage = () => {
           </ul>
         </div>
       )}
+
+<section className="bg-dark text-light p-lg-0 pt-lg-5 text-center text-sm-start">
+        <div className="container">
+          <div className="d-sm-flex align-items-center justify-content-between">
+            <div>
+              <h1>
+                <span className="text-warning">MOOC</span>@IIITA Courses
+              </h1>
+              <p className="lead my-4">
+                Choosing suitable courses is essential for connecting with the
+                world of technology:
+              </p>
+              <p className="list-group-item bg-dark text-light">
+                <b>1. </b>
+                Explore programming languages for software development.
+              </p>
+              <p className="list-group-item bg-dark text-light">
+                <b>2.</b> Dive into data science for valuable insights.
+              </p>
+              <p className="list-group-item bg-dark text-light">
+                <b>3.</b> Learn about emerging technologies like AI and
+                cybersecurity.
+              </p>
+              <p className="list-group-item bg-dark text-light">
+                <b>4.</b> Gain skills in digital marketing for global
+                connectivity.
+              </p>
+              <p className="list-group-item bg-dark text-light">
+                <b>5. </b>
+                Explore entrepreneurship for leveraging technology in business.
+              </p>
+              <p className="my-4">
+                By selecting courses strategically, individuals can bridge the
+                gap between aspirations and achievements in the tech industry,
+                shaping a brighter future together.
+              </p>
+            </div>
+            <img
+              className="img-fluid w-50 d-none d-sm-block d-md-block"
+              src={imgSample}
+            />
+          </div>
+        </div>
+      </section>
     </>
   );
 };
