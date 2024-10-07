@@ -10,16 +10,31 @@
     />
     <style>
       body {
-        
-        background-color: #25292e; 
+        background-image: url('iiita.jpeg'); /* Add your image here */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         font-family: 'Arial', sans-serif;
         color: #f8f9fa; /* Bootstrap text-light */
+      }
+      .blur-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('iiita.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(6px); /* Adjust blur value as needed */
+        z-index: -1; /* Send to back */
       }
       .form-container {
         max-width: 700px;
         margin: 50px auto;
         padding: 30px;
-        background-color: #007bff; /* Blue background */
+        background-color: rgba(0, 123, 255, 0.85); /* Semi-transparent blue */
         border-radius: 8px;
         box-shadow: 0 0 15px #343a40;
         border-left: 5px solid #ffc107; /* Yellow border for highlight */
@@ -50,6 +65,7 @@
     </style>
   </head>
   <body>
+    <div class="blur-background"></div> <!-- Blur background image -->
     <div class="container">
       <div class="form-container">
         <h1 class="form-header">Apply to Become an <span class="highlight">Instructor</span> on <span class="highlight">MOOC</span>@IIITA</h1>
@@ -144,7 +160,7 @@
 
           <!-- Submit Button -->
           <div class="d-grid">
-            <button type="submit" class="btn btn-primary" >Submit Application</button>
+            <button type="submit" class="btn btn-primary">Submit Application</button>
           </div>
         </form>
       </div>
