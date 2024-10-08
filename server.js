@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieSession from "cookie-session";
+import { lessonsRoutes } from "./routes/lessonsRoutes.js";
+import { invoicesRoutes } from "./routes/invoicesRoutes.js";
+import { invoiceItemsRoutes } from "./routes/invoiceItemsRoutes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
@@ -49,6 +52,9 @@ app.use("/api/users", usersRoutes);
 app.use("/api/courses", coursesRoutes);
 app.use("/api/carts", cartsRoutes);
 app.use("/auth", authsRoutes);
+app.use("/api/lessons", lessonsRoutes);
+app.use("/api/invoices", invoicesRoutes);
+app.use("/api/invoiceItems", invoiceItemsRoutes);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 app.get("*", (req, res) =>
