@@ -1,22 +1,9 @@
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Form,
-  Button,
-  InputGroup,
-} from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import Alert from "../../Components/Alert";
-import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import React from "react";
 import { CDBBtn, CDBIcon } from "cdbreact";
-import {
-  getUser,
-  loginUser,
-  loginUserSocial,
-} from "../../services/usersService";
+import { getUser, loginUser } from "../../services/usersService";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import Role from "../../../../models/RoleEnum";
@@ -24,23 +11,38 @@ import logo from "../../../images/MOOC@IIITA_logo.png";
 
 const Login = () => {
   const { setUser } = useContext(UserContext);
-
-  //error State
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  //Handle login
+  useEffect(() => {
+    document.body.style.background = "linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/images/header-background.png') center center no-repeat";
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundAttachment = 'fixed';
+
+    return () => {
+      document.body.style.background = '';
+    };
+  }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    if (!email || !password) {
+      setError("Email and password are required");
+      setLoading(false);
+      return;
+    }
+
     try {
       const data = await loginUser(email, password);
       const token = data.token;
       const dataUser = await getUser(token);
       setUser({
-        // id: dataUser._id,
         token,
         email: dataUser.email,
         name: dataUser.name,
@@ -48,198 +50,141 @@ const Login = () => {
         role: dataUser.role,
       });
 
-      if (dataUser.user.role === Role.ADMIN) {
-        navigate("/admin");
-      } else if (dataUser.user === Role.INSTRUCTOR) {
-        navigate("/instructor");
-      } else {
-        navigate("/");
+      switch (dataUser.role) {
+        
+        default:
+          navigate("/");
+          break;
       }
     } catch (err) {
-      setError(err.message);
+      setError("Invalid email or password.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleGoogleLogin = async (e) => {
-    window.open("http://online-courses-web.onrender.com/auth/google", "_self");
-    e.preventDefault();
-    try {
-      const data = await loginUserSocial();
-      const token = data.token;
-      const dataUser = await getUser(token);
-      setUser({
-        token,
-        email: dataUser.user.email,
-        name: dataUser.user.name,
-        picture: dataUser.user.picture,
-        role: dataUser.user.role,
-      });
-
-      if (dataUser.user.role === Role.ADMIN) {
-        navigate("/admin");
-      } else if (dataUser.user === Role.INSTRUCTOR) {
-        navigate("/instructor");
-      } else {
-        navigate("/");
-      }
-    } catch (err) {
-      setError(err.message);
-    }
+  const handleSocialLogin = (provider) => {
+    window.open(`http://online-courses-web.onrender.com/auth/${provider}`, "_self");
   };
 
-  const handleFacebookLogin = async (e) => {
-    window.open(`http://online-courses-web.onrender.com/auth/facebook`, "_self");
-
-    e.preventDefault();
-    try {
-      const data = await loginUserSocial();
-      const token = data.token;
-      const dataUser = await getUser(token);
-      setUser({
-        token,
-        email: dataUser.user.email,
-        name: dataUser.user.name,
-        picture: dataUser.user.picture,
-        role: dataUser.user.role,
-      });
-
-      if (dataUser.user.role === Role.ADMIN) {
-        navigate("/admin");
-      } else if (dataUser.user === Role.INSTRUCTOR) {
-        navigate("/instructor");
-      } else {
-        navigate("/");
-      }
-    } catch (err) {
-      setError(err.message);
-    }
+  const styles = {
+    pageContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      // minHeight: '100vh',
+      padding: '10px',
+    },
+    formContainer: {
+      maxWidth: '500px',
+      padding: '30px',
+      backgroundColor: 'rgba(0, 123, 255, 0.85)',
+      borderRadius: '8px',
+      boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)',
+      borderLeft: '5px solid #ffc107',
+      borderRight: '5px solid #ffc107',
+      marginLeft: '25%',  // Move form container slightly to the right
+    },
+    formHeader: {
+      marginBottom: '20px',
+      color: '#f8f9fa',
+    },
+    highlight: {
+      color: '#ffc107',
+    },
+    submitButton: {
+      display: 'block',
+      width: '100%',
+      padding: '10px 0',
+      backgroundColor: '#ffc107',
+      borderColor: '#ffc107',
+      color: '#343a40',
+      marginTop: '20px',
+      fontSize: '1.1em',
+    },
+    socialButtons: {
+      display: 'flex',
+      justifyContent: 'space-around',
+      gap: '10px',
+      marginTop: '20px',
+    },
+    logo: {
+      maxWidth: '40%',
+      // maxHeight: '200px',
+      marginLeft: '25%',
+    },
+    alert: {
+      marginTop: '20px',
+    },
   };
 
-  const handleGithubLogin = async (e) => {
-    window.open(`http://online-courses-web.onrender.com/auth/github`, "_self");
-    e.preventDefault();
-    try {
-      const data = await loginUserSocial();
-      const token = data.token;
-      const dataUser = await getUser(token);
-      setUser({
-        token,
-        email: dataUser.user.email,
-        name: dataUser.user.name,
-        picture: dataUser.user.picture,
-        role: dataUser.user.role,
-      });
-
-      if (dataUser.user.role === Role.ADMIN) {
-        navigate("/admin");
-      } else if (dataUser.user === Role.INSTRUCTOR) {
-        navigate("/instructor");
-      } else {
-        navigate("/");
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
   return (
-    <Container className="p-4 shadow">
+    <Container className="p-0" style={styles.pageContainer}>
       <Row>
-        <Col
-          md="6"
-          className="text-center text-md-start d-flex flex-column justify-content-center"
-        >
-          <h1 className="my-5 display-3 fw-bold ls-tight text-info-emphasis px-3">
+        <Col md="6" className="text-center d-flex flex-column justify-content-center">
+          <h1 className="my-5 display-3 fw-bold text-info-emphasis">
             Login Page <br />
             <span className="text-dark-emphasis">
-              for accessing the{" "}
-              <span className="text-warning fw-bold">MOOC@IIITA</span> website
+              for accessing the <span style={styles.highlight}>MOOC@IIITA</span> website
             </span>
           </h1>
-
-          <div style={{ textAlign: "center" }}>
-            <img
-              src={logo}
-              alt="Logo"
-              style={{ maxWidth: "50%", maxHeight: "300px" }}
-            />
-          </div>
+          <img src={logo} alt="Logo" style={styles.logo} />
         </Col>
 
         <Col md="6">
-          <Card className="my-5">
-            <Card.Body className="p-5 shadow">
-              <Row>
-                <Col>
-                  <Form.Group className="mb-4">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      className="input p-1"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      autoFocus
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
+          <Card className="my-5" style={styles.formContainer}>
+            <Card.Body className="p-5">
+              <Form onSubmit={handleLogin}>
+                <Form.Group className="mb-4">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    autoFocus
+                    required
+                    aria-label="Email"
+                  />
+                </Form.Group>
 
-              <Row>
                 <Form.Group className="mb-4">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
-                    className="input p-1"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
+                    aria-label="Password"
                   />
                 </Form.Group>
-              </Row>
 
-              <Row className="d-flex justify-content-center mt-4 ">
-                <Button className="mb-4 col-3" size="md" onClick={handleLogin}>
-                  Login
+                <Button type="submit" className="mb-4" style={styles.submitButton} disabled={loading}>
+                  {loading ? 'Logging in...' : 'Login'}
                 </Button>
-              </Row>
+              </Form>
 
-              <div className="text-center">
-                <a
-                  href="/forgot-password"
-                  style={{ textDecoration: "none", fontStyle: "italic" }}
-                >
+              {error && <Alert msg={error} type="error" style={styles.alert} />}
+
+              <div className="text-center mt-3">
+                <Link to="/forgot-password" style={{ textDecoration: "none", fontStyle: "italic", color: '#f8f9fa' }}>
                   Forgot password?
-                </a>
+                </Link>
               </div>
+
               <div className="other-login mt-5 border-top border-info-subtle">
-                <p className="text-center mt-2"> or sign up with</p>
-                <div className="flex-row mb-3 d-flex justify-content-center">
-                  <CDBBtn
-                    color="white"
-                    className="m-0 fs-5"
-                    style={{ boxShadow: "none" }}
-                    onClick={handleFacebookLogin}
-                  >
+                <p className="text-center mt-2" style={{ color: '#f8f9fa' }}>or sign up with</p>
+                <div style={styles.socialButtons}>
+                  <CDBBtn onClick={() => handleSocialLogin('facebook')} style={{ backgroundColor: '#3b5998', color: 'white' }}>
                     <CDBIcon fab icon="facebook-f" />
                   </CDBBtn>
-                  <CDBBtn
-                    color="white"
-                    className="m-0 fs-5"
-                    style={{ boxShadow: "none" }}
-                    onClick={handleGithubLogin}
-                  >
+                  <CDBBtn onClick={() => handleSocialLogin('github')} style={{ backgroundColor: '#333', color: 'white' }}>
                     <CDBIcon fab icon="github" />
                   </CDBBtn>
-                  <CDBBtn
-                    color="white"
-                    className="m-0 fs-5"
-                    style={{ boxShadow: "none" }}
-                    onClick={handleGoogleLogin}
-                  >
+                  <CDBBtn onClick={() => handleSocialLogin('google')} style={{ backgroundColor: '#db4437', color: 'white' }}>
                     <CDBIcon fab icon="google-plus-g" />
                   </CDBBtn>
                 </div>
               </div>
-
-              {error && <Alert msg={error} type="error" />}
             </Card.Body>
           </Card>
         </Col>
