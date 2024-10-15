@@ -269,7 +269,7 @@ const HomePage = () => {
                     />
                   </div>
                   <div className="col-4">
-                    <h2>ASHUTOSH</h2>
+                    <h2>MAX SLACKER</h2>
                     <p className="lead">
                       <b>Age:</b> 17
                     </p>
@@ -306,7 +306,7 @@ const HomePage = () => {
                     />
                   </div>
                   <div className="col-4">
-                    <h2>ANIKET SOOD</h2>
+                    <h2>NEEDA JOBSOON</h2>
                     <p className="lead">
                       <b>Age:</b> 20
                     </p>
@@ -342,7 +342,7 @@ const HomePage = () => {
                     />
                   </div>
                   <div className="col-4">
-                    <h2>KRISH PATEL</h2>
+                    <h2>ADRAHMA QUEEN</h2>
                     <p className="lead">
                       <b>Age:</b> 17
                     </p>
