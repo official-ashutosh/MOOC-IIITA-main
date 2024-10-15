@@ -21,7 +21,7 @@ const checkout= async(cartItems, paymentMethod)=>{
 };
 
 const getMyCourse = async()=>{
-    const res = await fetch("/api/invoices/my_cour       se", {
+    const res = await fetch("/api/invoices/my_course", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

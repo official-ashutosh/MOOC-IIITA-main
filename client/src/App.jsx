@@ -42,8 +42,6 @@ import CourseIntroPage from "./pages/students/CourseIntroPage";
 import OTPInput from "./pages/users/OTPInput.jsx";
 import CourseDetails from "./pages/students/CourseDetails.jsx";
 import LessonDetailsPage from "./pages/students/LessonDetailsPage.jsx";
-import InstructorApplication from "./pages/instructors/InstructorApplication.jsx";
-import ThankYouPage from "./pages/instructors/ThankYouPage.jsx";
 
 const App = () => {
   const { user, setUser } = useContext(UserContext);
@@ -75,7 +73,6 @@ const App = () => {
         <Route element={<Layout />}>
           {user.role == Role.ADMIN && (
             <>
-              
               <Route index element={<UserManager />} />
               <Route path="/instructor" element={<InstructorManager />} />
               <Route path="/course" element={<CourseManager />} />
@@ -87,7 +84,6 @@ const App = () => {
           )}
           {user.role == Role.INSTRUCTOR && (
             <>
-            
               <Route index element={<MyCreatedCourses />} />
               <Route path="/create-course" element={<CreateCourse />}></Route>
               <Route path="/edit-course" element={<EditCourse />}></Route>
@@ -125,8 +121,6 @@ const App = () => {
               <Route path="/my-course" element={<MyCoursePage />}></Route>
               <Route path="/course-intro" element={<CourseIntroPage />}></Route>
               <Route path="/course-details" element={<CourseDetails />}></Route>
-              <Route path="/instructor-app" element={<InstructorApplication />}></Route>
-              <Route path="/thankyou" element={<ThankYouPage />} ></Route>
               <Route
                 path="/lesson-details"
                 element={<LessonDetailsPage />}
