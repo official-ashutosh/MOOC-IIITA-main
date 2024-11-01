@@ -67,7 +67,6 @@ app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/client/dist/index.html"))
 );
 
-// mongodb+srv://krishpatel:5uwcypeRxZ1L97Uf@moociiita.6lwrg.mongodb.net/?retryWrites=true&w=majority&appName=MOOCIIITA
 mongoose
   .connect('mongodb://localhost:27017')
   .then(() => {
