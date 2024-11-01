@@ -2,17 +2,20 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieSession from "cookie-session";
-import { lessonsRoutes } from "./routes/lessonsRoutes.js";
-import { invoicesRoutes } from "./routes/invoicesRoutes.js";
-import { invoiceItemsRoutes } from "./routes/invoiceItemsRoutes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
+import { invoicesRoutes } from "./routes/invoicesRoutes.js";
+import { invoiceItemsRoutes } from "./routes/invoiceItemsRoutes.js";
+import { lessonsRoutes } from "./routes/lessonsRoutes.js";
 import { usersRoutes } from "./routes/usersRoutes.js";
 import { authsRoutes } from "./routes/authsRoutes.js";
 import { coursesRoutes } from "./routes/coursesRoutes.js";
 import { cartsRoutes } from "./routes/cartsRouter.js";
+import { commentsRoutes } from "./routes/commentsRoutes.js";
+import { reviewsRoutes } from "./routes/reviewsRoutes.js";
+import { documentsRoutes } from "./routes/documentsRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,10 +54,13 @@ app.use(express.json({ limit: "200mb" }));
 app.use("/api/users", usersRoutes);
 app.use("/api/courses", coursesRoutes);
 app.use("/api/carts", cartsRoutes);
-app.use("/auth", authsRoutes);
 app.use("/api/lessons", lessonsRoutes);
+app.use("/api/documents", documentsRoutes);
+app.use("/api/comments", commentsRoutes);
 app.use("/api/invoices", invoicesRoutes);
 app.use("/api/invoiceItems", invoiceItemsRoutes);
+app.use("/api/reviews", reviewsRoutes);
+app.use("/auth", authsRoutes);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 app.get("*", (req, res) =>
