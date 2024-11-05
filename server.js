@@ -67,8 +67,9 @@ app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/client/dist/index.html"))
 );
 
+// mongodb://localhost:27017
 mongoose
-  .connect('mongodb://localhost:27017')
+  .connect('')
   .then(() => {
     console.log("Connected to the database");
 
@@ -80,16 +81,3 @@ app.listen(process.env.PORT, () => {
     console.log("Error connecting to the database: ", error);
 });
 
-
-// const stripe = require('stripe')('sk_test_51QGM0XGOnNPJg4GU1eQ4z8pCumAXEs7DpU09n7vE40W1iYYod0I8Nje21VWEUuklkgj5h3Ml9Qo6BiymNmpOMJPY00W1MYJsHW');
-
-// const session = await stripe.checkout.sessions.create({
-//   line_items: [
-//     {
-//       price: '{{PRICE_ID}}',
-//       quantity: 1,
-//     },
-//   ],
-//   mode: 'payment',
-//   success_url: 'https://example.com/success',
-// });
