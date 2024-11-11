@@ -42,6 +42,8 @@ import CourseIntroPage from "./pages/students/CourseIntroPage";
 import OTPInput from "./pages/users/OTPInput.jsx";
 import CourseDetails from "./pages/students/CourseDetails.jsx";
 import LessonDetailsPage from "./pages/students/LessonDetailsPage.jsx";
+import FeedbackForm from "./pages/users/Feedback.jsx";
+import ThankYou from "./pages/users/Thank.jsx";
 
 const App = () => {
   const { user, setUser } = useContext(UserContext);
@@ -71,6 +73,7 @@ const App = () => {
         {!user.token ||
           (loading && !user.role && <Route index element={<Loading />} />)}
         <Route element={<Layout />}>
+    
           {user.role == Role.ADMIN && (
             <>
               <Route index element={<UserManager />} />
@@ -116,7 +119,7 @@ const App = () => {
             <>
               <Route index element={<HomePage />} />
               <Route path="/cart" element={<CartPage />}></Route>
-              <Route path="/list-courses" element={<CoursePage />}></Route>
+              <Route path="-courses" element={<CoursePage />}></Route>
               <Route path="/checkout" element={<CheckoutPage />}></Route>
               <Route path="/my-course" element={<MyCoursePage />}></Route>
               <Route path="/course-intro" element={<CourseIntroPage />}></Route>
@@ -140,6 +143,8 @@ const App = () => {
           )}
           <Route element={<GuestRoutes />}>
             <Route path="/list-courses" element={<CoursePage />}></Route>
+            <Route path="/feedback" element={<FeedbackForm />}></Route>
+            <Route path="/thank" element={<ThankYou />}></Route>
             <Route path="/login" element={<Login />} />
             {/* <Route path="/my-course" element={<MyCoursePage />}></Route> */}
             <Route path="/register" element={<Register />} />

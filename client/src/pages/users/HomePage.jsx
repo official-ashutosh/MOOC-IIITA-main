@@ -395,6 +395,31 @@ const HomePage = () => {
             </button>
           </div>
         </div>
+
+        
+        <div className="container">
+  <h2 className="text-center mb-4">Student Feedback</h2>
+  {/* Carousel for feedback */}
+  <div id="carouselExampleCaptions" className="carousel carousel-dark slide" data-bs-ride="carousel">
+    {/* Carousel Indicators */}
+    <div className="carousel-inner">
+      {/* Feedback carousel content */}
+    </div>
+  </div>
+</div>
+
+{/* New Give Feedback Button Section */}
+<section className="text-center p-5">
+  <div className="container">
+    <h2>We value your feedback!</h2>
+    <p>Your feedback helps us improve and provide better learning experiences.</p>
+    {/* Change Link to an anchor tag for direct navigation to HTML page */}
+    <a href="/feedback" className="btn btn-primary btn-lg">
+      Give Feedback
+    </a>
+  </div>
+</section>
+
       </section>
     </>
   );
