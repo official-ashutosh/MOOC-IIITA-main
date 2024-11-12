@@ -1,6 +1,6 @@
 // models/feedback.js
 
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 // Define the feedback schema
 const feedbackSchema = new mongoose.Schema({
@@ -30,9 +30,8 @@ const feedbackSchema = new mongoose.Schema({
   suggestions: {
     type: String
   },
-  submittedAt: {
-    type: Date,
-    default: Date.now
+  createdAt: {
+    timestamps: true,
   }
 });
 

@@ -91,6 +91,8 @@ const App = () => {
               <Route path="/create-course" element={<CreateCourse />}></Route>
               <Route path="/edit-course" element={<EditCourse />}></Route>
               <Route path="/create-lesson" element={<CreateLesson />}></Route>
+              <Route path="/feedback" element={<FeedbackForm />}></Route>
+              <Route path="/thank" element={<ThankYou />}></Route>
               <Route path="/update-lesson" element={<UpdateLesson />}></Route>
               <Route
                 path="/create-document"
@@ -117,8 +119,11 @@ const App = () => {
           )}
           {user.role != Role.ADMIN && user.role != Role.INSTRUCTOR && (
             <>
+            
               <Route index element={<HomePage />} />
               <Route path="/cart" element={<CartPage />}></Route>
+              <Route path="/feedback" element={<FeedbackForm />}></Route>
+              <Route path="/thank" element={<ThankYou />}></Route>
               <Route path="-courses" element={<CoursePage />}></Route>
               <Route path="/checkout" element={<CheckoutPage />}></Route>
               <Route path="/my-course" element={<MyCoursePage />}></Route>
