@@ -10,6 +10,9 @@ import ins4 from "../../../images/ins4.svg";
 import stu1 from "../../../images/stu1.png";
 import stu2 from "../../../images/stu2.png";
 import stu3 from "../../../images/stu3.png";
+import con1 from "../../../images/ashu_iit28.jpg";
+import con2 from "../../../images/krish_iit9.jpg";
+import con3 from "../../../images/aniket_iit18.jpg";
 
 const HomePage = () => {
   const { user, setUser } = useContext(UserContext);
@@ -269,7 +272,7 @@ const HomePage = () => {
                     />
                   </div>
                   <div className="col-4">
-                    <h2>ASHUTOSH</h2>
+                    <h2>UTKARSH SHARMA</h2>
                     <p className="lead">
                       <b>Age:</b> 17
                     </p>
@@ -342,7 +345,7 @@ const HomePage = () => {
                     />
                   </div>
                   <div className="col-4">
-                    <h2>KRISH PATEL</h2>
+                    <h2>ISHA VERMA</h2>
                     <p className="lead">
                       <b>Age:</b> 17
                     </p>
@@ -397,28 +400,71 @@ const HomePage = () => {
         </div>
 
         
-        <div className="container">
-  <h2 className="text-center mb-4">Student Feedback</h2>
-  {/* Carousel for feedback */}
-  <div id="carouselExampleCaptions" className="carousel carousel-dark slide" data-bs-ride="carousel">
-    {/* Carousel Indicators */}
-    <div className="carousel-inner">
-      {/* Feedback carousel content */}
+{/* Contributors Section */}
+<section id="contributors" className="p-5 bg-dark">
+  <div className="container">
+    <h2 className="text-center text-white">Meet Our Contributors</h2>
+    <p className="lead text-center text-white mb-5">
+      "Alone we can do so little; together we can do so much." — Helen Keller
+    </p>
+    <div className="row g-4">
+      {/* Contributor 1 */}
+      <div className="col-md-6 col-lg-4">
+        <div className="card bg-light h-100 shadow-sm">
+          <div className="card-body text-center">
+            <img
+              src={con2}
+              alt="Krish Patel"
+              className="rounded-circle mb-3"
+              style={{ width: "120px", height: "120px", objectFit: "cover" }}
+            />
+            <h5 className="card-title mb-3">Krish Patel</h5>
+            <p className="card-text">
+              "The best way to predict the future is to create it."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Contributor 2 */}
+      <div className="col-md-6 col-lg-4">
+        <div className="card bg-light h-100 shadow-sm">
+          <div className="card-body text-center">
+            <img
+              src={con1}
+              alt="Ashutosh Kumar"
+              className="rounded-circle mb-3"
+              style={{ width: "120px", height: "120px", objectFit: "cover" }}
+            />
+            <h5 className="card-title mb-3">Ashutosh Kumar</h5>
+            <p className="card-text">
+              "Education is the most powerful weapon you can use to change the world."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Contributor 3 */}
+      <div className="col-md-6 col-lg-4">
+        <div className="card bg-light h-100 shadow-sm">
+          <div className="card-body text-center">
+            <img
+              src={con3}
+              alt="Aniket Gupta"
+              className="rounded-circle mb-3"
+              style={{ width: "120px", height: "120px", objectFit: "cover" }}
+            />
+            <h5 className="card-title mb-3">Aniket Gupta</h5>
+            <p className="card-text">
+              "Learning never exhausts the mind."
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-{/* New Give Feedback Button Section */}
-<section className="text-center p-5">
-  <div className="container">
-    <h2>We value your feedback!</h2>
-    <p>Your feedback helps us improve and provide better learning experiences.</p>
-    {/* Change Link to an anchor tag for direct navigation to HTML page */}
-    <a href="/feedback" className="btn btn-primary btn-lg">
-      Give Feedback
-    </a>
-  </div>
 </section>
+
 
       </section>
     </>

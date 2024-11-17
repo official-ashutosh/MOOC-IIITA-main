@@ -142,107 +142,144 @@ const Login = () => {
     }
   };
   return (
-    <Container className="p-4 shadow">
+    <Container className="p-4">
       <Row>
-        <Col
-          md="6"
-          className="text-center text-md-start d-flex flex-column justify-content-center"
-        >
-          <h1 className="my-5 display-3 fw-bold ls-tight text-info-emphasis px-3">
-            Login Page <br />
-            <span className="text-dark-emphasis">
-              for accessing the{" "}
-              <span className="text-warning fw-bold">MOOC@IIITA</span> website
-            </span>
-          </h1>
+            <Col md={5} className="d-flex flex-column align-items-center text-center">
+        <img
+          src={logo}
+          alt="Logo"
+          style={{
+            paddingTop : "100px",
+            maxWidth: "80%",
+            height: "auto",
+            padding: "40px",
+            borderRadius: "10px",
+          }}
+          className="mb-3"
+        />
+        <h3 className="text-center text-info-emphasis fw-bold" style={{ fontSize: "2.6rem" }}>
+        Access your MOOC@IIITA Account
+        </h3>
+        <p className="text-muted text-center mt-3" style={{ fontSize: "1.1rem", lineHeight: "1.5" }}>
+          Become a part of our amazing instructor team today! Join us in shaping the future of education.
+        </p>
+        
+      </Col>
 
-          <div style={{ textAlign: "center" }}>
-            <img
-              src={logo}
-              alt="Logo"
-              style={{ maxWidth: "50%", maxHeight: "300px" }}
-            />
-          </div>
-        </Col>
 
-        <Col md="6">
-          <Card className="my-5">
-            <Card.Body className="p-5 shadow">
-              <Row>
-                <Col>
-                  <Form.Group className="mb-4">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      className="input p-1"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      autoFocus
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
+      <Col md="7" className="d-flex flex-column align-items-end">
+  <Card className="shadow-lg my-5" style={{ width: "100%", maxWidth: "600px" }}>
+    <Card.Body className="p-5">
+      {/* Login Page Header */}
+      <div className="text-center mb-4">
+        <h2 className="text-info-emphasis fw-bold" style={{ fontSize: "2rem" }}>
+          Login Page
+        </h2>
+      </div>
 
-              <Row>
-                <Form.Group className="mb-4">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    className="input p-1"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </Form.Group>
-              </Row>
+      {/* Form */}
+      <Form>
+        <Form.Group className="mb-4">
+          <Form.Label className="fw-semibold">Email</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter your email"
+            className="p-2"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoFocus
+          />
+        </Form.Group>
 
-              <Row className="d-flex justify-content-center mt-4 ">
-                <Button className="mb-4 col-3" size="md" onClick={handleLogin}>
+        <Form.Group className="mb-4">
+          <Form.Label className="fw-semibold">Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter your password"
+            className="p-2"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+
+        <Row className="d-flex justify-content-center ">
+                <Button
+                  className="mb-4 col-3"
+                  size="md"
+                  onClick={handleLogin}
+                >
                   Login
                 </Button>
               </Row>
 
-              <div className="text-center">
-                <a
-                  href="/forgot-password"
-                  style={{ textDecoration: "none", fontStyle: "italic" }}
-                >
-                  Forgot password?
-                </a>
-              </div>
-              <div className="other-login mt-5 border-top border-info-subtle">
-                <p className="text-center mt-2"> or sign up with</p>
-                <div className="flex-row mb-3 d-flex justify-content-center">
-                  <CDBBtn
-                    color="white"
-                    className="m-0 fs-5"
-                    style={{ boxShadow: "none" }}
-                    onClick={handleFacebookLogin}
-                  >
-                    <CDBIcon fab icon="facebook-f" />
-                  </CDBBtn>
-                  <CDBBtn
-                    color="white"
-                    className="m-0 fs-5"
-                    style={{ boxShadow: "none" }}
-                    onClick={handleGithubLogin}
-                  >
-                    <CDBIcon fab icon="github" />
-                  </CDBBtn>
-                  <CDBBtn
-                    color="white"
-                    className="m-0 fs-5"
-                    style={{ boxShadow: "none" }}
-                    onClick={handleGoogleLogin}
-                  >
-                    <CDBIcon fab icon="google-plus-g" />
-                  </CDBBtn>
-                </div>
-              </div>
+        <div className="text-center mb-3">
+          <a
+            href="/forgot-password"
+            style={{
+              textDecoration: "none",
+              fontStyle: "italic",
+              color: "#6c757d",
+            }}
+          >
+            Forgot password?
+          </a>
+        </div>
 
-              {error && <Alert msg={error} type="error" />}
-            </Card.Body>
-          </Card>
-        </Col>
+        <div className="other-login border-top pt-4">
+          <p className="text-center text-muted mb-3">Or login with</p>
+          <div className="d-flex justify-content-center gap-3">
+            <CDBBtn
+              color="white"
+              className="fs-5 p-2"
+              style={{
+                borderRadius: "50%",
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+              }}
+              onClick={handleFacebookLogin}
+            >
+              <CDBIcon fab icon="facebook-f" />
+            </CDBBtn>
+            <CDBBtn
+              color="white"
+              className="fs-5 p-2"
+              style={{
+                borderRadius: "50%",
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+              }}
+              onClick={handleGithubLogin}
+            >
+              <CDBIcon fab icon="github" />
+            </CDBBtn>
+            <CDBBtn
+              color="white"
+              className="fs-5 p-2"
+              style={{
+                borderRadius: "50%",
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+              }}
+              onClick={handleGoogleLogin}
+            >
+              <CDBIcon fab icon="google-plus-g" />
+            </CDBBtn>
+          </div>
+        </div>
+      </Form>
+
+      {error && (
+        <Alert
+          msg={error}
+          type="error"
+          style={{
+            marginTop: "20px",
+            textAlign: "center",
+          }}
+        />
+      )}
+    </Card.Body>
+  </Card>
+</Col>
+
+
       </Row>
     </Container>
   );

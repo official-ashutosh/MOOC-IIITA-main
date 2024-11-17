@@ -25,6 +25,9 @@ const StudentLayout = () => {
 
   return (
     <>
+    <Nav.Item>
+        <Nav.Link href="/contact-us">Contact Us</Nav.Link>
+      </Nav.Item>
       <Nav.Item>
         <Nav.Link href="/list-courses">List Courses</Nav.Link>
       </Nav.Item>

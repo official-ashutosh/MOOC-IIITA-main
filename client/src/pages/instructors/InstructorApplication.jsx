@@ -1,32 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-const FeedbackForm = () => {
+const InstructorApplication = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    feedbackType: '',
-    rating: '',
-    comments: '',
-    suggestions: '',
+    phone: '',
+    dob: '',
+    address: '',
+    qualifications: '',
+    motivation: ''
   });
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Initialize navigate function
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
+    // Handle form submission, send it to the backend or other action
+    // After form submission, navigate to the ThankYouPage
     navigate('/thankyou');
   };
 
   useEffect(() => {
-    document.body.style.background =
-      "linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/images/header-background.png') center center no-repeat";
+    document.body.style.background = "linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/images/header-background.png') center center no-repeat";
     document.body.style.backgroundSize = 'cover';
 
     return () => {
@@ -74,7 +80,8 @@ const FeedbackForm = () => {
     <div style={styles.container}>
       <div style={styles.formContainer}>
         <h1 style={styles.formHeader}>
-          Provide Your <span style={styles.highlight}>Feedback</span> for <span style={styles.highlight}>MOOC</span>@IIITA
+          Apply to Become an <span style={styles.highlight}>Instructor</span> on{' '}
+          <span style={styles.highlight}>MOOC</span>@IIITA
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -86,9 +93,9 @@ const FeedbackForm = () => {
               className="form-control"
               id="name"
               name="name"
+              placeholder="Enter your full name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter your full name"
               required
               style={styles.formControl}
             />
@@ -103,97 +110,101 @@ const FeedbackForm = () => {
               className="form-control"
               id="email"
               name="email"
+              placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your email"
               required
               style={styles.formControl}
             />
           </div>
 
           <div className="mb-3">
-            <label htmlFor="feedbackType" className="form-label" style={styles.formLabel}>
-              Feedback Type
+            <label htmlFor="phone" className="form-label" style={styles.formLabel}>
+              Phone Number
             </label>
-            <select
-              className="form-select"
-              id="feedbackType"
-              name="feedbackType"
-              value={formData.feedbackType}
+            <input
+              type="tel"
+              className="form-control"
+              id="phone"
+              name="phone"
+              placeholder="Enter your phone number"
+              value={formData.phone}
               onChange={handleChange}
               required
               style={styles.formControl}
-            >
-              <option value="" disabled>
-                Select feedback type
-              </option>
-              <option value="Website">Website</option>
-              <option value="Bug">Bug</option>
-              <option value="Course Content">Course Content</option>
-              <option value="Instructor">Instructor</option>
-            </select>
+            />
           </div>
 
           <div className="mb-3">
-            <label htmlFor="rating" className="form-label" style={styles.formLabel}>
-              Please Rate
+            <label htmlFor="dob" className="form-label" style={styles.formLabel}>
+              Date of Birth
             </label>
-            <select
-              className="form-select"
-              id="rating"
-              name="rating"
-              value={formData.rating}
+            <input
+              type="date"
+              className="form-control"
+              id="dob"
+              name="dob"
+              value={formData.dob}
               onChange={handleChange}
               required
               style={styles.formControl}
-            >
-              <option value="" disabled>
-                Select your rating
-              </option>
-              <option value="5">5 - Excellent</option>
-              <option value="4">4 - Very Good</option>
-              <option value="3">3 - Good</option>
-              <option value="2">2 - Fair</option>
-              <option value="1">1 - Poor</option>
-            </select>
+            />
           </div>
 
           <div className="mb-3">
-            <label htmlFor="comments" className="form-label" style={styles.formLabel}>
-              Comments
+            <label htmlFor="address" className="form-label" style={styles.formLabel}>
+              Address
             </label>
             <textarea
               className="form-control"
-              id="comments"
-              name="comments"
-              rows="4"
-              value={formData.comments}
+              id="address"
+              name="address"
+              rows="2"
+              placeholder="Enter your address"
+              value={formData.address}
               onChange={handleChange}
-              placeholder="Provide your valuable feedback"
               required
               style={styles.formControl}
             ></textarea>
           </div>
 
           <div className="mb-3">
-            <label htmlFor="suggestions" className="form-label" style={styles.formLabel}>
-              Suggestions for Improvement
+            <label htmlFor="qualifications" className="form-label" style={styles.formLabel}>
+              Qualifications
             </label>
             <textarea
               className="form-control"
-              id="suggestions"
-              name="suggestions"
+              id="qualifications"
+              name="qualifications"
               rows="3"
-              value={formData.suggestions}
+              placeholder="List your qualifications"
+              value={formData.qualifications}
               onChange={handleChange}
-              placeholder="Share any suggestions for improving the course"
+              required
+              style={styles.formControl}
+            ></textarea>
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="motivation" className="form-label" style={styles.formLabel}>
+              Why do you want to be an instructor on MOOC@IIITA?
+            </label>
+            <textarea
+              className="form-control"
+              id="motivation"
+              name="motivation"
+              rows="4"
+              placeholder="Explain your motivation to be an instructor"
+              value={formData.motivation}
+              onChange={handleChange}
+              required
               style={styles.formControl}
             ></textarea>
           </div>
 
           <div className="d-grid">
-            <button type="submit" className="btn btn-primary btn-lg" style={styles.submitButton}>
-              Submit Feedback
+            <button type="submit" className="btn btn-primary" style={styles.submitButton}>
+              Submit Application
             </button>
           </div>
         </form>
@@ -202,4 +213,4 @@ const FeedbackForm = () => {
   );
 };
 
-export default FeedbackForm;
+export default InstructorApplication;

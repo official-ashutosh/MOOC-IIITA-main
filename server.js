@@ -68,9 +68,8 @@ app.get("*", (req, res) =>
 );
 
 
-// mongodb://localhost:27017
 mongoose
-  .connect('')
+  .connect('mongodb://localhost:27017')
   .then(() => {
     console.log("Connected to the database");
 
@@ -81,4 +80,3 @@ app.listen(process.env.PORT, () => {
 .catch((error) => {
     console.log("Error connecting to the database: ", error);
 });
-

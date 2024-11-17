@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button, Col, Container, Row, Card, Form } from "react-bootstrap"; // Thêm Form từ react-bootstrap
+import { Button, Col, Container, Row, Card, Form } from "react-bootstrap";
 import "./MyProfilePage.css";
 import { UserContext } from "../../../contexts/UserContext";
 import userImage from "../../../../images/user.png";
@@ -42,7 +42,6 @@ const EditProfile = () => {
     try {
       const formData = new FormData();
       formData.append("name", userData.name);
-      // formData.append('email', userData.email);
       formData.append("phone", userData.phone);
       formData.append("picture", userData.picture);
       console.log(userData.picture);
@@ -56,7 +55,6 @@ const EditProfile = () => {
         phone: userData.phone,
       });
       setShowChangeModal(true);
-      // navigate('/my-profile')
     } catch (error) {
       setError(error.message);
     }
@@ -73,19 +71,16 @@ const EditProfile = () => {
   };
 
   return (
-    <section className="vh-90" style={{ backgroundColor: "#f4f5f7" }}>
-      <Container className="py-5 h-100">
-        <Row className="justify-content-center align-items-center h-100">
-          <Col lg="6" className="mb-4 mb-lg-0">
-            <Card className="mb-3" style={{ borderRadius: ".5rem" }}>
-              <Row className="g-0" style={{ height: "450px" }}>
+    <section style={styles.section}>
+      <Container className="py-5">
+        <Row className="justify-content-center align-items-center">
+          <Col lg="6">
+            <Card className="shadow-lg" style={styles.card}>
+              <Row className="g-0" style={{ height: "500px" }}>
                 <Col
                   md="4"
-                  className="gradient-custom text-center text-white shadow bg-body-tertiary rounded"
-                  style={{
-                    borderTopLeftRadius: ".5rem",
-                    borderBottomLeftRadius: ".5rem",
-                  }}
+                  className="text-center text-white"
+                  style={styles.leftPanel}
                 >
                   <Card.Img
                     className="rounded-circle my-5"
@@ -96,12 +91,8 @@ const EditProfile = () => {
                         : user.picture)
                     }
                     alt="Avatar"
-                    style={{ width: "80px", height: "80px " }}
+                    style={styles.profileImage}
                   />
-
-                  <Card.Title as="h5">{user.name}</Card.Title>
-                  <Card.Text as="h6">{user.role}</Card.Text>
-
                   <input
                     type="file"
                     accept="image/*"
@@ -118,9 +109,10 @@ const EditProfile = () => {
                   />
                   <label htmlFor="upload-image">
                     <Button
-                      className="mt-5"
-                      variant="outline-light"
+                      className="mt-4"
+                      variant="light"
                       size="sm"
+                      style={styles.uploadButton}
                       as="span"
                     >
                       Upload
@@ -128,83 +120,58 @@ const EditProfile = () => {
                   </label>
                 </Col>
                 <Col md="8">
-                  <Card.Body
-                    className="p-4 shadow bg-body-tertiary rounded"
-                    style={{ backgroundColor: "#f8f9fa" }}
-                  >
-                    <Card.Title as="h4">Information</Card.Title>
+                  <Card.Body style={styles.cardBody}>
+                    <Card.Title as="h4">Edit Information</Card.Title>
                     <hr className="mt-0 mb-4" />
-                    <Row>
-                      <Form>
-                        <Form.Group className="mb-3" controlId="formName">
-                          <Form.Label>Name</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="name"
-                            value={userData.name}
-                            onChange={handleInputChange}
-                          />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formEmail">
-                          <Form.Label>Email</Form.Label>
-                          <Form.Control
-                            type="email"
-                            name="email"
-                            value={user.email}
-                            disabled:true
-                            // readOnly:true
-                          />
-                        </Form.Group>
+                    <Form>
+                      <Form.Group className="mb-3" controlId="formName">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="name"
+                          value={userData.name}
+                          onChange={handleInputChange}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="formEmail">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                          type="email"
+                          name="email"
+                          value={user.email}
+                          disabled
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="formPhone">
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="phone"
+                          value={userData.phone}
+                          onChange={handleInputChange}
+                        />
+                      </Form.Group>
+                    </Form>
 
-                        <Form.Group className="mb-3" controlId="formPhone">
-                          <Form.Label>Phone</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="phone"
-                            value={userData.phone}
-                            onChange={handleInputChange}
-                          />
-                        </Form.Group>
-                      </Form>
-                    </Row>
-
-                    <Row>
-                      <div className="d-flex justify-content-start mt-5">
-                        <a href="#!" className="me-3">
-                          <i className="fab fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="#!" className="me-3">
-                          <i className="fab fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="#!" className="me-3">
-                          <i className="fab fa-instagram fa-lg"></i>
-                        </a>
-                      </div>
-                    </Row>
-
-                    <Row className="d-flex justify-content-center text-align mt-5">
-                      <Col className="d-flex justify-content-center">
-                        <Button
-                          variant="outline-danger"
-                          size="sm"
-                          className="mt-1"
-                          onClick={handleCancel}
-                        >
-                          Cancel
-                        </Button>
-                      </Col>
-                      <Col className="d-flex justify-content-center">
-                        <Button
-                          variant="outline-success"
-                          size="sm"
-                          className="mt-1"
-                          onClick={handleSave}
-                        >
-                          Save
-                        </Button>
-                      </Col>
-                      {error && <Alert msg={error} type="error" />}
-                    </Row>
+                    <div className="text-center mt-4">
+                      <Button
+                        variant="outline-danger"
+                        size="sm"
+                        style={styles.cancelButton}
+                        onClick={handleCancel}
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        variant="outline-success"
+                        size="sm"
+                        style={styles.saveButton}
+                        onClick={handleSave}
+                      >
+                        Save
+                      </Button>
+                    </div>
+                    {error && <Alert msg={error} type="error" />}
                   </Card.Body>
                 </Col>
               </Row>
@@ -226,7 +193,7 @@ const EditProfile = () => {
               />
             </div>
           </Modal.Body>
-          <Modal.Footer className="d-flex justify-content-center text-align-center">
+          <Modal.Footer className="d-flex justify-content-center">
             <Button variant="success" onClick={confirm}>
               Continue
             </Button>
@@ -235,6 +202,53 @@ const EditProfile = () => {
       </Container>
     </section>
   );
+};
+
+const styles = {
+  section: {
+    background: "#ffffff",
+    minHeight: "100vh",
+    paddingTop: "20px",
+  },
+  card: {
+    borderRadius: "15px",
+    overflow: "hidden",
+  },
+  leftPanel: {
+    background: "linear-gradient(135deg, #ff7e5f, #feb47b)",
+    borderTopLeftRadius: "15px",
+    borderBottomLeftRadius: "15px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  profileImage: {
+    width: "100px",
+    height: "100px",
+    border: "4px solid white",
+  },
+  uploadButton: {
+    background: "#ffffff",
+    color: "#6a11cb",
+    border: "none",
+  },
+  cardBody: {
+    backgroundColor: "#f8f9fa",
+    padding: "30px",
+    borderRadius: "15px",
+  },
+  cancelButton: {
+    marginRight: "10px",
+    borderColor: "#d9534f",
+    color: "#d9534f",
+    fontWeight: "bold",
+  },
+  saveButton: {
+    borderColor: "#5cb85c",
+    color: "#5cb85c",
+    fontWeight: "bold",
+  },
 };
 
 export default EditProfile;

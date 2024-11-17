@@ -1,35 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Row, Card, Form } from "react-bootstrap";
-import {
-  getUserByOther,
-  registerInstructor,
-  registerUser,
-} from "../../services/usersService";
-import userImage from "../../../images/user.png";
-import { UserDetailContext } from "../../contexts/UserDetailContext";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import PropTypes from "prop-types";
+import { registerInstructor } from "../../services/usersService";
+import logo from "../../../images/MOOC@IIITA_logo.png";
 import AdminNavBar from "../../Components/AdminNavBar";
 import Role from "../../../../models/RoleEnum";
 import Alert from "../../Components/Alert";
-import logo from "../../../images/MOOC@IIITA_logo.png";
 
 const InstructorRegister = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setTimeout(async () => {
-      if (success || error) {
-        const timer = setTimeout(() => {
-          setSuccess("");
-          setError("");
-        }, 1500);
-
-        // Xóa timeout
-        return () => clearTimeout(timer);
-      }
-    }, 0);
+    if (success || error) {
+      const timer = setTimeout(() => {
+        setSuccess(null);
+        setError(null);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
   }, [success, error]);
 
   const [formData, setFormData] = useState({
@@ -39,7 +27,7 @@ const InstructorRegister = () => {
     confirmPassword: "",
     role: Role.INSTRUCTOR,
   });
-  //Handle Register
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -50,127 +38,111 @@ const InstructorRegister = () => {
         formData.confirmPassword,
         formData.role
       );
-      setSuccess("Register successfully");
+      setSuccess("Instructor registered successfully!");
     } catch (error) {
-      setError(error.message);
+      setError(error.message || "An error occurred while registering.");
     }
   };
+
   return (
-    <Row className="ms-(-6) me-0" style={{ height: "100%" }}>
-      <Col md={3}>
+    <Row className="gx-0" style={{ height: "100%" }}>
+      <Col md={3} className="bg-light">
         <AdminNavBar />
       </Col>
-      <Col md={8}>
+      <Col md={9}>
         <Container>
-          <h1 className="mt-3"> Register Instructor</h1>
-          <Container className="d-flex justify-content-center align-items-center mt-5">
-            <Container className="p-4 shadow">
-              <Row>
-                <Col
-                  md="6"
-                  className="text-center text-md-start d-flex flex-column justify-content-center"
-                >
-                  <h1 className="my-5 display-3 fw-bold ls-tight text-info-emphasis px-3">
-                    Register Page <br />
-                    <span className="text-dark-emphasis">for your account</span>
-                  </h1>
-
-                  <div style={{ textAlign: "center" }}>
+          <h1 className="mt-4 text-center text-dark-emphasis">
+            Register an Instructor
+          </h1>
+          <p className="text-center text-muted mb-5">
+            "Education is the key to unlocking the world, a passport to freedom."
+          </p>
+          <Container className="d-flex justify-content-center align-items-center">
+            <Card className="shadow-lg" style={{ maxWidth: "1000px", width: "100%", height : "550px",  padding : "20px"}}>
+              <Card.Body className="p-4">
+                <Row>
+                  {/* Left Side */}
+                  <Col md={5} className="d-flex flex-column align-items-center">
                     <img
                       src={logo}
                       alt="Logo"
-                      style={{ maxWidth: "50%", maxHeight: "300px" }}
+                      style={{ maxWidth: "80%", height: "auto" ,  padding : "20px"}}
+                      className="mb-3"
                     />
-                  </div>
-                </Col>
+                    <h3 className="text-center text-info-emphasis">
+                      Welcome to MOOC@IIITA
+                    </h3>
+                    <p className="text-muted text-center mt-2">
+                      Become a part of our amazing instructor team today!
+                    </p>
+                  </Col>
 
-                <Col md="6">
-                  <Card className="my-5">
-                    <Card.Body className="p-5 shadow">
-                      <Row>
-                        <Col>
-                          <Form.Group className="mb-4">
-                            <Form.Label>Your name</Form.Label>
-                            <Form.Control
-                              type="input"
-                              className="input p-1"
-                              value={formData.name}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  name: e.target.value,
-                                })
-                              }
-                              autoFocus
-                            />
-                          </Form.Group>
-                        </Col>
-                      </Row>
-
-                      <Row>
+                  {/* Right Side */}
+                  <Col md={7}>
+                    <Container  className="p-1 gx-0">
+                      <Form className="p-4 shadow">
                         <Form.Group className="mb-4">
-                          <Form.Label>Email</Form.Label>
+                          <Form.Label className="fw-semibold">Your Name</Form.Label>
                           <Form.Control
-                            type="email"
-                            className="input p-1"
-                            value={formData.email}
+                            type="text"
+                            placeholder="Enter your full name"
+                            value={formData.name}
                             onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                email: e.target.value,
-                              })
+                              setFormData({ ...formData, name: e.target.value })
                             }
-                            autoFocus
                           />
                         </Form.Group>
-                      </Row>
+                        <Form.Group className="mb-4">
+                          <Form.Label className="fw-semibold">Email Address</Form.Label>
+                          <Form.Control
+                            type="email"
+                            placeholder="Enter your email"
+                            value={formData.email}
+                            onChange={(e) =>
+                              setFormData({ ...formData, email: e.target.value })
+                            }
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-4">
+                          <Form.Label className="fw-semibold">Password</Form.Label>
+                          <Form.Control
+                            type="password"
+                            placeholder="Enter a password"
+                            value={formData.password}
+                            onChange={(e) =>
+                              setFormData({ ...formData, password: e.target.value })
+                            }
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-4">
+                          <Form.Label className="fw-semibold">Confirm Password</Form.Label>
+                          <Form.Control
+                            type="password"
+                            placeholder="Confirm your password"
+                            value={formData.confirmPassword}
+                            onChange={(e) =>
+                              setFormData({ ...formData, confirmPassword: e.target.value })
+                            }
+                          />
+                        </Form.Group>
+                        <div className="d-grid">
+                          <Button
+                            variant="primary"
+                            size="lg"
+                            onClick={handleRegister}
+                          >
+                            Register Now
+                          </Button>
+                        </div>
+                        {success && <Alert msg={success} type="success" />}
+                        {error && <Alert msg={error} type="error" />}
+                      </Form>
+                    </Container>
+                  </Col>
 
-                      <Form.Group className="mb-4">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                          type="password"
-                          className="input p-1"
-                          value={formData.password}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              password: e.target.value,
-                            })
-                          }
-                        />
-                      </Form.Group>
-
-                      <Form.Group className="mb-4">
-                        <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control
-                          type="password"
-                          className="input p-1"
-                          value={formData.confirmPassword}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              confirmPassword: e.target.value,
-                            })
-                          }
-                        />
-                      </Form.Group>
-
-                      <Row className="d-flex justify-content-center ">
-                        <Button
-                          className="mb-4 col-3"
-                          size="md"
-                          onClick={handleRegister}
-                        >
-                          Register
-                        </Button>
-                      </Row>
-                      {success && <Alert msg={success} type="success" />}
-                      {error && <Alert msg={error} type="error" />}
-                    </Card.Body>
-                  </Card>
-                </Col>
-              </Row>
-            </Container>
+                </Row>
+              </Card.Body>
+            </Card>
           </Container>
         </Container>
       </Col>

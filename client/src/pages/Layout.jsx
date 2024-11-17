@@ -96,11 +96,15 @@ const Layout = () => {
                   </>
                 ) : (
                   <>
+                  <Nav.Item>
+                    <Nav.Link href="/contact-us">Contact Us</Nav.Link>
+                  </Nav.Item>
+                  
                     <Nav.Item>
                       <Nav.Link href="/list-courses">List Courses</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link href="instructor_apply.html" target="_blank">Teach on MOOC@IIITA</Nav.Link>
+                      <Nav.Link href="/instructor-app" target="_blank">Teach on MOOC@IIITA</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link href="/login" className="text-warning">

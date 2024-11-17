@@ -44,6 +44,9 @@ import CourseDetails from "./pages/students/CourseDetails.jsx";
 import LessonDetailsPage from "./pages/students/LessonDetailsPage.jsx";
 import FeedbackForm from "./pages/users/Feedback.jsx";
 import ThankYou from "./pages/users/Thank.jsx";
+import InstructorApplication from "./pages/instructors/InstructorApplication.jsx";
+import ThankYouPage from "./pages/instructors/ThankYouPage.jsx";
+import ContactUsPage from "./contactus.jsx";
 
 const App = () => {
   const { user, setUser } = useContext(UserContext);
@@ -122,12 +125,15 @@ const App = () => {
             
               <Route index element={<HomePage />} />
               <Route path="/cart" element={<CartPage />}></Route>
+              <Route path="/contact-us" element={<ContactUsPage />}></Route>
               <Route path="/feedback" element={<FeedbackForm />}></Route>
               <Route path="/thank" element={<ThankYou />}></Route>
               <Route path="-courses" element={<CoursePage />}></Route>
               <Route path="/checkout" element={<CheckoutPage />}></Route>
               <Route path="/my-course" element={<MyCoursePage />}></Route>
               <Route path="/course-intro" element={<CourseIntroPage />}></Route>
+              <Route path="/instructor-app" element={<InstructorApplication />}></Route>
+              <Route path="/thankyou" element={<ThankYouPage />} ></Route>
               <Route path="/course-details" element={<CourseDetails />}></Route>
               <Route
                 path="/lesson-details"
@@ -138,6 +144,8 @@ const App = () => {
           )}
           {user.token && (
             <>
+            <Route path="/list-courses" element={<CoursePage />}></Route>
+            <Route path="/contact-us" element={<ContactUsPage />}></Route>
               <Route path="/my-profile" element={<MyProfilePage />}></Route>
               <Route path="/my-profile/edit" element={<EditProfile />}></Route>
               <Route
@@ -148,6 +156,7 @@ const App = () => {
           )}
           <Route element={<GuestRoutes />}>
             <Route path="/list-courses" element={<CoursePage />}></Route>
+            <Route path="/contact-us" element={<ContactUsPage />}></Route>
             <Route path="/feedback" element={<FeedbackForm />}></Route>
             <Route path="/thank" element={<ThankYou />}></Route>
             <Route path="/login" element={<Login />} />
