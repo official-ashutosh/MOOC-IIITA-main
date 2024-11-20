@@ -22,42 +22,42 @@ const HomePage = () => {
   };
   return (
     <>
-      <section className="bg-dark text-light p-lg-0 pt-lg-5 text-center text-sm-start">
-        <div className="container">
-          <div className="d-sm-flex align-items-center justify-content-between">
-            <div>
-              <h1>
-                Find your best <span className="text-warning"> Courses </span>
-              </h1>
-              <h1>
-                & Upgrade your <span className="text-warning"> Skill </span>
-              </h1>
-              <p className="lead my-4">
-                We focus on teaching technology-related fields as well as honing
-                skills for our students, from basic to advanced, tailored to
-                each appropriate age group.
-              </p>
-              <a href="/register" className="btn btn-primary btn-lg">
-                Get Started
-              </a>
-            </div>
-            <img
-              className="img-fluid w-50 d-none d-sm-block d-md-block"
-              src={leaning}
-              alt=""
-            />
+          <section className="bg-dark text-light p-lg-5 pt-lg-5 text-center text-sm-start">
+      <div className="container py-5">
+        <div className="d-sm-flex align-items-center justify-content-between">
+          <div className="me-3">
+            <h1>
+              Explore the Best <span className="text-warning">Courses</span> at IIITA
+            </h1>
+            <h1>
+              & Master New <span className="text-warning">Skills</span> for the Future
+            </h1>
+
+          <p className="lead my-5">
+            We are dedicated to providing high-quality online courses in cutting-edge technology fields. 
+            Whether you're starting your learning journey or advancing your expertise,
+            we offer courses designed to cater to all levels, from beginners to experts. 
+            Our content is tailored to meet the needs of diverse learners, 
+            empowering students of all ages to excel in the world of technology.
+          </p>
+          <p className="text" style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+            Join Us Now 👇
+          </p>
+          <a href="/register" className="btn btn-primary btn-lg">
+            Get Started
+          </a>
+
           </div>
+          <img
+            className="img-fluid w-50 d-none d-sm-block d-md-block"
+            src={leaning}
+            alt=""
+          />
         </div>
-      </section>
-      <section className="bg-primary text-light p-5">
-        <div className="container">
-          <div className="d-md-flex justify-content-between align-items-center">
-            <h2 className="mb-3 mb-md-0">
-              <span className="text-warning">MOOC</span>@IIITA - Join Us Now!
-            </h2>
-          </div>
-        </div>
-      </section>
+      </div>
+    </section>
+
+      
 
       <section className="p-5">
         <div className="container">
@@ -131,22 +131,20 @@ const HomePage = () => {
               />
             </div>
             <div className="col-md p-5">
-              <h2>
-                We <span className="text-warning">COOK</span> IT
-              </h2>
-              <p className="lead">
-                This online learning platform focused on technical skills in the
-                field of technology.
-              </p>
-              <p>
-                Explore and deepen your understanding of various technical
-                subjects. Our courses provide comprehensive and practical
-                knowledge to help you build a solid foundation in the
-                ever-evolving world of technology. Gain valuable skills, stay
-                up-to-date with the latest trends, and unlock new opportunities
-                in the exciting realm of technology.
-              </p>
-            </div>
+            <h2>
+              We <span className="text-warning">LEARN</span> TOGETHER
+            </h2>
+            <p className="lead">
+              MOOC@IIITA is an online learning platform focused on technical skills in the field of technology.
+            </p>
+            <p>
+              Explore and deepen your understanding of various technical subjects. Our courses provide comprehensive 
+              and practical knowledge to help you build a solid foundation in the ever-evolving world of technology. 
+              Gain valuable skills, stay up-to-date with the latest trends, and unlock new opportunities in the 
+              exciting realm of technology through MOOC@IIITA.
+            </p>
+          </div>
+
           </div>
         </div>
       </section>
@@ -400,70 +398,70 @@ const HomePage = () => {
         </div>
 
         
-{/* Contributors Section */}
-<section id="contributors" className="p-5 bg-dark">
-  <div className="container">
-    <h2 className="text-center text-white">Meet Our Contributors</h2>
-    <p className="lead text-center text-white mb-5">
-      "Alone we can do so little; together we can do so much." — Helen Keller
-    </p>
-    <div className="row g-4">
-      {/* Contributor 1 */}
-      <div className="col-md-6 col-lg-4">
-        <div className="card bg-light h-100 shadow-sm">
-          <div className="card-body text-center">
-            <img
-              src={con2}
-              alt="Krish Patel"
-              className="rounded-circle mb-3"
-              style={{ width: "120px", height: "120px", objectFit: "cover" }}
-            />
-            <h5 className="card-title mb-3">Krish Patel</h5>
-            <p className="card-text">
-              "The best way to predict the future is to create it."
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* Contributors Section */}
+      <section id="contributors" className="p-5 bg-dark">
+        <div className="container">
+          <h2 className="text-center text-white">Meet Our Contributors</h2>
+          <p className="lead text-center text-white mb-5">
+            "Alone we can do so little; together we can do so much." — Helen Keller
+          </p>
+          <div className="row g-4">
+            {/* Contributor 1 */}
+            <div className="col-md-6 col-lg-4">
+              <div className="card bg-light h-100 shadow-sm">
+                <div className="card-body text-center">
+                  <img
+                    src={con2}
+                    alt="Krish Patel"
+                    className="rounded-circle mb-3"
+                    style={{ width: "120px", height: "120px", objectFit: "cover" }}
+                  />
+                  <h5 className="card-title mb-3">Krish Patel</h5>
+                  <p className="card-text">
+                    "The best way to predict the future is to create it."
+                  </p>
+                </div>
+              </div>
+            </div>
 
-      {/* Contributor 2 */}
-      <div className="col-md-6 col-lg-4">
-        <div className="card bg-light h-100 shadow-sm">
-          <div className="card-body text-center">
-            <img
-              src={con1}
-              alt="Ashutosh Kumar"
-              className="rounded-circle mb-3"
-              style={{ width: "120px", height: "120px", objectFit: "cover" }}
-            />
-            <h5 className="card-title mb-3">Ashutosh Kumar</h5>
-            <p className="card-text">
-              "Education is the most powerful weapon you can use to change the world."
-            </p>
-          </div>
-        </div>
-      </div>
+            {/* Contributor 2 */}
+            <div className="col-md-6 col-lg-4">
+              <div className="card bg-light h-100 shadow-sm">
+                <div className="card-body text-center">
+                  <img
+                    src={con1}
+                    alt="Ashutosh Kumar"
+                    className="rounded-circle mb-3"
+                    style={{ width: "120px", height: "120px", objectFit: "cover" }}
+                  />
+                  <h5 className="card-title mb-3">Ashutosh Kumar</h5>
+                  <p className="card-text">
+                    "Education is the most powerful weapon you can use to change the world."
+                  </p>
+                </div>
+              </div>
+            </div>
 
-      {/* Contributor 3 */}
-      <div className="col-md-6 col-lg-4">
-        <div className="card bg-light h-100 shadow-sm">
-          <div className="card-body text-center">
-            <img
-              src={con3}
-              alt="Aniket Gupta"
-              className="rounded-circle mb-3"
-              style={{ width: "120px", height: "120px", objectFit: "cover" }}
-            />
-            <h5 className="card-title mb-3">Aniket Gupta</h5>
-            <p className="card-text">
-              "Learning never exhausts the mind."
-            </p>
+            {/* Contributor 3 */}
+            <div className="col-md-6 col-lg-4">
+              <div className="card bg-light h-100 shadow-sm">
+                <div className="card-body text-center">
+                  <img
+                    src={con3}
+                    alt="Aniket Gupta"
+                    className="rounded-circle mb-3"
+                    style={{ width: "120px", height: "120px", objectFit: "cover" }}
+                  />
+                  <h5 className="card-title mb-3">Aniket Gupta</h5>
+                  <p className="card-text">
+                    "Learning never exhausts the mind."
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
 
       </section>

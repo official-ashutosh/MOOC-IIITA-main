@@ -69,7 +69,7 @@ app.get("*", (req, res) =>
 
 
 mongoose
-  .connect('mongodb://localhost:27017')
+  .connect('mongodb+srv://tmkoc6465:O0QXw5vqFdPI4olt@kp.dirye.mongodb.net/test')
   .then(() => {
     console.log("Connected to the database");
 

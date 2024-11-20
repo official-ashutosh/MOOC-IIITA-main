@@ -7,7 +7,7 @@ import Topic from "../../../../models/TopicEnum.js";
 import { CoursesContext } from "../../contexts/CoursesContext.jsx";
 import imgSample from "../../../images/course.png";
 import { useNotification } from "../../contexts/NotificationContext ";
-//import { addToCart } from "../../services/cartsService.js";
+// import { addToCart } from "../../services/cartsService.js";
 import { Toast, ToastContainer } from "react-bootstrap";
 import { addToCart, getCart } from "../../services/cartsService.js";
 import { CartContext } from "../../contexts/CartContext";
@@ -140,233 +140,227 @@ const CoursePage = () => {
       {renderToast()}
       
       <section className="bg-primary text-light p-5">
-        <div className="container">
-          <div className="row">
-            <div className="d-md-flex justify-content-between align-items-center">
-              <div className="col-4">
-                <h2 className="mb-3 mb-md-0">
-                  What are you <span className="text-warning">looking </span>
-                  for?
-                </h2>
-              </div>
-              <div className="col">
-                <div className="input-group news-input">
-                  <span className="input-group-text">
-                    <i className="fa fa-search" aria-hidden="true"></i>
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search..."
-                    value={searchValue}
-                    onChange={(e) => {
-                      e.preventDefault();
-                      setSearchValue(e.target.value);
-                    }}
-                  />
-                  <div className="btn btn-success" onClick={handleSearch}>
-                    Search
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div className="container">
+    <div className="row">
+      <div className="d-md-flex justify-content-between align-items-center">
+        <div className="col-4">
+          <h2 className="mb-3 mb-md-0">
+            What are you <span className="text-warning">looking</span> for?
+          </h2>
+        </div>
+        <div className="col">
+          <div className="input-group news-input shadow">
+            <span className="input-group-text bg-warning text-dark">
+              <i className="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search for courses, topics..."
+              value={searchValue}
+              onChange={(e) => {
+                e.preventDefault();
+                setSearchValue(e.target.value);
+              }}
+            />
+            <button className="btn btn-success" onClick={handleSearch}>
+              Search
+            </button>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <section className="p-5">
-        <div className="container">
-          {loading ? (
-            <AnimatedProgressBar />
-          ) : (
-            <div className="row">
-              <div className="col-2">
-                <div className="input-group pb-4">
-                  <span className="input-group-text bg-warning text-light">
-                    <i className="fa fa-sort" aria-hidden="true"></i>
-                  </span>
-                  <select
-                    className="form-select"
-                    value={selectedSort}
-                    onChange={(e) => {
-                      e.preventDefault();
-                      setCurrentPage(1);
-                      setSelectedSort(e.target.value);
-                    }}
-                  >
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                    <option value="highestPrice">Highest Price</option>
-                    <option value="lowestPrice">Lowest Price</option>
-                  </select>
-                </div>
-                <ul className="list-group">
-                  <li className="list-group-item bg-warning text-light text-center">
-                    <b>Topic</b>
-                  </li>
-                  {topics.map((topic) => (
-                    <li className="list-group-item" key={topic}>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          value={topic}
-                          checked={selectedTopic === topic}
-                          onChange={(e) => {
-                            e.preventDefault();
-                            setSelectedTopic(topic);
-                            setCurrentPage(1);
-                          }}
-                          id={`radio-${topic}`}
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor={`radio-${topic}`}
-                        >
-                          {topic.toUpperCase()}
-                        </label>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="col">
-                <div className="row row-cols-1 row-cols-md-3 g-4 pb-4">
-                  {courses.listCourses.length === 0 ? (
-                    <p className="fs-2 text-center text-danger">Not Found.</p>
-                  ) : (
-                    <>
-                      {courses.listCourses.map((course) => (
-                        <div key={course._id}>
-                          <CourseCard course={course}>
-                            <div className="pe-2 flex-grow-1">
-                              <Link
-                                to="/course-intro"
-                                state={course}
-                                className="btn btn-outline-primary w-100"
-                              >
-                                View Intro
-                              </Link>
-                            </div>
-                            <a
-                              href="#"
-                              className="btn btn-outline-warning"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handleAddToCart(course._id);
-                              }}
-                            >
-                              <i className="bi bi-cart4"></i>
-                            </a>
-                          </CourseCard>
-                        </div>
-                      ))}
-                    </>
-                  )}
-                </div>
-              </div>
+<section className="p-5">
+  <div className="container">
+    {loading ? (
+      <AnimatedProgressBar />
+    ) : (
+      <div className="row">
+        {/* Filter Section */}
+        <div className="col-md-3">
+          <div className="card p-3 shadow">
+            <h4 className="text-warning">Filter Options</h4>
+            <div className="input-group pb-4">
+              <span className="input-group-text bg-warning text-light">
+                <i className="fa fa-sort" aria-hidden="true"></i>
+              </span>
+              <select
+                className="form-select"
+                value={selectedSort}
+                onChange={(e) => {
+                  e.preventDefault();
+                  setCurrentPage(1);
+                  setSelectedSort(e.target.value);
+                }}
+              >
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="highestPrice">Highest Price</option>
+                <option value="lowestPrice">Lowest Price</option>
+              </select>
             </div>
-          )}
-        </div>
-      </section>
-
-      
-      {!loading && pages.length > 0 && (
-        <div className="d-flex justify-content-center">
-          <ul className="pagination">
-            <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-              <a
-                className="page-link"
-                href=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCurrentPage(currentPage - 1);
-                }}
-              >
-                Previous
-              </a>
-            </li>
-            {pages.map((page) => (
-              <li
-                key={page}
-                className={`page-item ${currentPage === page ? "active" : ""}`}
-                aria-current={currentPage === page ? "page" : null}
-              >
-                <a
-                  className="page-link"
-                  href=""
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage(page);
-                  }}
-                >
-                  {page}
-                </a>
+            <ul className="list-group">
+              <li className="list-group-item bg-warning text-light text-center">
+                <b>Topics</b>
               </li>
-            ))}
-            <li
-              className={`page-item ${
-                currentPage === totalPages ? "disabled" : ""
-              }`}
-            >
-              <a
-                className="page-link"
-                href=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCurrentPage(currentPage + 1);
-                }}
-              >
-                Next
-              </a>
-            </li>
-          </ul>
+              {topics.map((topic) => (
+                <li className="list-group-item" key={topic}>
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      value={topic}
+                      checked={selectedTopic === topic}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        setSelectedTopic(topic);
+                        setCurrentPage(1);
+                      }}
+                      id={`radio-${topic}`}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor={`radio-${topic}`}
+                    >
+                      {topic.toUpperCase()}
+                    </label>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      )}
+        {/* Course Section */}
+        <div className="col-md-9">
+          <div className="row row-cols-1 row-cols-md-3 g-4 pb-4">
+            {courses.listCourses.length === 0 ? (
+              <p className="fs-3 text-center text-danger">No Courses Found</p>
+            ) : (
+              courses.listCourses.map((course) => (
+                <div key={course._id}>
+                  <CourseCard course={course}>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <Link
+                        to="/course-intro"
+                        state={course}
+                        className="btn btn-outline-primary w-100 me-2"
+                      >
+                        View Intro
+                      </Link>
+                      <button
+                        className="btn btn-outline-warning"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleAddToCart(course._id);
+                        }}
+                      >
+                        <i className="bi bi-cart4"></i>
+                      </button>
+                    </div>
+                  </CourseCard>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+{/* Pagination */}
+{!loading && pages.length > 0 && (
+  <div className="d-flex justify-content-center">
+    <ul className="pagination">
+      <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+        <button
+          className="page-link"
+          onClick={(e) => {
+            e.preventDefault();
+            setCurrentPage(currentPage - 1);
+          }}
+        >
+          Previous
+        </button>
+      </li>
+      {pages.map((page) => (
+        <li
+          key={page}
+          className={`page-item ${currentPage === page ? "active" : ""}`}
+        >
+          <button
+            className="page-link"
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentPage(page);
+            }}
+          >
+            {page}
+          </button>
+        </li>
+      ))}
+      <li
+        className={`page-item ${
+          currentPage === totalPages ? "disabled" : ""
+        }`}
+      >
+        <button
+          className="page-link"
+          onClick={(e) => {
+            e.preventDefault();
+            setCurrentPage(currentPage + 1);
+          }}
+        >
+          Next
+        </button>
+      </li>
+    </ul>
+  </div>
+)}
 
 <section className="bg-dark text-light p-lg-0 pt-lg-5 text-center text-sm-start">
-        <div className="container">
-          <div className="d-sm-flex align-items-center justify-content-between">
-            <div>
-              <h1>
-                <span className="text-warning">MOOC</span>@IIITA Courses
-              </h1>
-              <p className="lead my-4">
-                Choosing suitable courses is essential for connecting with the
-                world of technology:
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>1. </b>
-                Explore programming languages for software development.
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>2.</b> Dive into data science for valuable insights.
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>3.</b> Learn about emerging technologies like AI and
-                cybersecurity.
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>4.</b> Gain skills in digital marketing for global
-                connectivity.
-              </p>
-              <p className="list-group-item bg-dark text-light">
-                <b>5. </b>
-                Explore entrepreneurship for leveraging technology in business.
-              </p>
-              <p className="my-4">
-                By selecting courses strategically, individuals can bridge the
-                gap between aspirations and achievements in the tech industry,
-                shaping a brighter future together.
-              </p>
-            </div>
-            <img
-              className="img-fluid w-50 d-none d-sm-block d-md-block"
-              src={imgSample}
-            />
-          </div>
-        </div>
-      </section>
+  <div className="container">
+    <div className="d-sm-flex align-items-center justify-content-between">
+      <div>
+        <h1>
+          <span className="text-warning">MOOC</span>@IIITA Courses
+        </h1>
+        <p className="lead my-4">
+          Discover courses that will transform your learning journey:
+        </p>
+        <ul className="list-group bg-dark text-light">
+          <li className="list-group-item bg-dark text-light">
+            <b>1.</b> Explore programming languages for software development.
+          </li>
+          <li className="list-group-item bg-dark text-light">
+            <b>2.</b> Dive into data science for valuable insights.
+          </li>
+          <li className="list-group-item bg-dark text-light">
+            <b>3.</b> Learn about emerging technologies like AI and cybersecurity.
+          </li>
+          <li className="list-group-item bg-dark text-light">
+            <b>4.</b> Gain skills in digital marketing for global connectivity.
+          </li>
+          <li className="list-group-item bg-dark text-light">
+            <b>5.</b> Explore entrepreneurship for leveraging technology in business.
+          </li>
+        </ul>
+        <p className="my-4">
+          Transform your aspirations into achievements with MOOC@IIITA and shape a brighter future together.
+        </p>
+      </div>
+      <img
+        className="img-fluid w-50 d-none d-sm-block d-md-block"
+        src={imgSample}
+        alt="MOOC Courses"
+      />
+    </div>
+  </div>
+</section>
+
     </>
   );
 };

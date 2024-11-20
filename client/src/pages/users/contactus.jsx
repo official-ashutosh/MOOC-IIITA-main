@@ -4,7 +4,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 const ContactUsPage = () => {
   return (
     <section style={styles.section}>
-      <Container className="py-5">
+      <Container className="py-4">
         <h2 className="text-center mb-4" style={styles.header}>
           Contact Us
         </h2>
@@ -15,40 +15,58 @@ const ContactUsPage = () => {
 
         <Row className="justify-content-center">
           {/* Contact Info Section */}
-          <Col lg={4}>
+
+                    <Col lg={5}>
+            <Card className="shadow-lg mb-4" style={styles.infoCard}>
+              <Card.Body className="text-center">
+                <h4 style={styles.infoTitle}>Hello, Learners!</h4>
+                <p style={styles.feedbackText}>
+                  Welcome to our learning platform!<br></br> We value your journey and are committed to your success.
+                </p>
+                <p style={styles.feedbackText}>
+                  Your feedback helps us improve<br></br>and provide better learning experiences.
+                </p>
+                <p style={styles.feedbackText}>
+                  Share your thoughts about our courses,<br></br> rate your favorite teachers, and review our website. 
+                </p>
+                <p style={styles.feedbackText}>
+                  Help us make your learning experience better!
+                </p>
+                <a href="/feedback" className="btn btn-primary btn-lg mt-4">
+                  Give Feedback
+                </a>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          <Col lg={5}>
             <Card className="shadow-lg mb-4" style={styles.infoCard}>
               <Card.Body className="text-center">
                 <h4 style={styles.infoTitle}>Get in Touch</h4>
                 <p style={styles.infoText}>
-                  Whether you have questions, feedback, or just want to say hello, 
-                  we’re here to help you on your MOOC journey!
+                  Whether you have questions, feedback,<br></br> or just want to say hello, 
+                  we’re here to help you<br></br> on your MOOC journey!
                 </p>
                 <hr />
                 <p>
+                  <strong>Name:</strong> Admin-mooc@iiita
+                  <br />
+                  <br/>
                   <strong>Email:</strong> contact@mooc.iiita.ac.in
                   <br />
+                  <br/>
                   <strong>Phone:</strong> +91-123-456-7890
                   <br />
-                  <strong>Address:</strong> IIIT Allahabad, Devghat, Jhalwa, Prayagraj, Uttar Pradesh, India
+                  <br/>
+                  <strong>Address:</strong> IIIT Allahabad, Jhalwa, Prayagraj,<br></br> Uttar Pradesh, India
                 </p>
               </Card.Body>
             </Card>
           </Col>
 
+
           {/* Feedback Section */}
-          <Col lg={6}>
-            <section className="text-center p-5">
-              <div className="container">
-                <h2 style={styles.feedbackHeader}>We value your feedback!</h2>
-                <p style={styles.feedbackText}>
-                  Your feedback helps us improve and provide better learning experiences.
-                </p>
-                <a href="/feedback" className="btn btn-primary btn-lg">
-                  Give Feedback
-                </a>
-              </div>
-            </section>
-          </Col>
+          
         </Row>
 
 

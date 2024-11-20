@@ -46,7 +46,7 @@ import FeedbackForm from "./pages/users/Feedback.jsx";
 import ThankYou from "./pages/users/Thank.jsx";
 import InstructorApplication from "./pages/instructors/InstructorApplication.jsx";
 import ThankYouPage from "./pages/instructors/ThankYouPage.jsx";
-import ContactUsPage from "./contactus.jsx";
+import ContactUsPage from "./pages/users/contactus.jsx";
 
 const App = () => {
   const { user, setUser } = useContext(UserContext);

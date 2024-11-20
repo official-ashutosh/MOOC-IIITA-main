@@ -15,6 +15,8 @@ import Button from "react-bootstrap/Button";
 import logo from "../../images/MOOC@IIITA_logo.png";
 import StudentLayout from "../Components/StudentLayout.jsx";
 import { Modal } from "react-bootstrap";
+import ScrollToTopButton from "./ScrollToTopButton.jsx";
+
 
 const Layout = () => {
   const { user, setUser } = useContext(UserContext);
@@ -138,6 +140,7 @@ const Layout = () => {
         </Navbar>
       )}
       <Outlet />
+      <ScrollToTopButton />
     </>
   );
 };

@@ -144,7 +144,7 @@ const checkEmailOTPUser = async (req, res) => {
 const registerInstructor = async (req, res) => {
   const { name, email, password } = req.body;
   const userAuth = await User.findById(req.user._id);
-  if (userAuth.role != "") {
+  if (userAuth.role != "ADMIN") {
     return res.status(401).json({ error: "Not authorized" });
   }
 
