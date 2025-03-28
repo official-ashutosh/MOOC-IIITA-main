@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import leaning from "../../../images/learning.png";
-import fundamentals from "../../../images/fundamentals.svg";
-import ins1 from "../../../images/ins1.svg";
-import ins2 from "../../../images/ins2.svg";
-import ins3 from "../../../images/ins3.svg";
-import ins4 from "../../../images/ins4.svg";
+import fundamentals from "../../../images/fundamentals.png";
+import ins1 from "../../../images/nsaini.jpg";
+import ins2 from "../../../images/sonali.jpg";
+import ins3 from "../../../images/gauravs.jpg";
+import ins4 from "../../../images/opvyas.jpg";
 import stu1 from "../../../images/stu1.png";
 import stu2 from "../../../images/stu2.png";
 import stu3 from "../../../images/stu3.png";
@@ -153,8 +153,7 @@ const HomePage = () => {
         <div className="container">
           <h2 className="text-center text-white">Our Instructors</h2>
           <p className="lead text-center text-white mb-5">
-            Our instructors all have over 5 years ofs experience in teaching
-            technical courses in the field of technology.
+            Our instructors all have over 5 years of experience teaching technical courses in technology-related fields.
           </p>
           <div className="row g-4">
             <div className="col-md-6 col-lg-3">
@@ -163,12 +162,12 @@ const HomePage = () => {
                   <img
                     src={ins1}
                     className="rounded-circle mb-3"
-                    alt=""
+                    alt="Ms. Olivia - Electrical Engineering Instructor"
+                    style={{ width: "120px", height: "120px", objectFit: "cover" }}
                   />
-                  <h3 className="card-title mb-3">Ms. Olivia</h3>
+                  <h3 className="card-title mb-3">Dr. Naveen Saini</h3>
                   <p className="card-text">
-                    A dedicated instructor with expertise in electrical
-                    engineering and circuit design.
+                  An experienced instructor specializing in machine learning, artificial intelligence, and software engineering.
                   </p>
                 </div>
               </div>
@@ -180,12 +179,12 @@ const HomePage = () => {
                   <img
                     src={ins2}
                     className="rounded-circle mb-3"
-                    alt=""
+                    alt="Dr. Doofenshmirtz - Mechanical Engineering and Robotics Expert"
+                    style={{ width: "120px", height: "120px", objectFit: "cover" }}
                   />
-                  <h3 className="card-title mb-3">Dr. Doofenshmirtz</h3>
+                  <h3 className="card-title mb-3">Dr. Sonali Agarwal</h3>
                   <p className="card-text">
-                    An innovative and knowledgeable professor skilled in
-                    mechanical engineering and robotics.
+                    An innovative and knowledgeable professor skilled in mechanical engineering and robotics.
                   </p>
                 </div>
               </div>
@@ -197,12 +196,12 @@ const HomePage = () => {
                   <img
                     src={ins3}
                     className="rounded-circle mb-3"
-                    alt=""
+                    alt="Ms. Beast - Programming and Software Development Specialist"
+                    style={{ width: "120px", height: "120px", objectFit: "cover" }}
                   />
-                  <h3 className="card-title mb-3">Ms. Beast</h3>
+                  <h3 className="card-title mb-3">Dr. Gaurav Srivastava</h3>
                   <p className="card-text">
-                    A passionate and experienced teacher specializing in
-                    computer programming and software development.
+                    A passionate and experienced teacher specializing in computer programming and software development.
                   </p>
                 </div>
               </div>
@@ -214,12 +213,13 @@ const HomePage = () => {
                   <img
                     src={ins4}
                     className="rounded-circle mb-3"
-                    alt=""
+                    alt="Ms. Martinez - Civil Engineering and Structural Design Instructor"
+                    style={{ width: "120px", height: "120px", objectFit: "cover" }}
                   />
-                  <h3 className="card-title mb-3">Ms. Martinez</h3>
+                  <h3 className="card-title mb-3">	
+                  Prof. Om Prakash Vyas </h3>
                   <p className="card-text">
-                    An enthusiastic teacher with a background in civil
-                    engineering, focusing on structural design and construction.
+                    An enthusiastic teacher with a background in object oriented engineering, focusing on structural design and construction.
                   </p>
                 </div>
               </div>
@@ -227,6 +227,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+
 
       <section className="p-5">
         <div className="container">
@@ -262,7 +264,7 @@ const HomePage = () => {
               <div className="carousel-item active">
                 <div className="row align-items-center justify-content-between">
                   <div className="col-1"></div>
-                  <div className="col-6">
+                  <div className="col-5">
                     <img
                       src={stu1}
                       className="d-block w-100"
@@ -299,7 +301,7 @@ const HomePage = () => {
               <div className="carousel-item">
                 <div className="row align-items-center justify-content-between">
                   <div className="col-1"></div>
-                  <div className="col-6">
+                  <div className="col-5">
                     <img
                       src={stu2}
                       className="d-block w-100"
@@ -335,7 +337,7 @@ const HomePage = () => {
               <div className="carousel-item">
                 <div className="row align-items-center justify-content-between">
                   <div className="col-1"></div>
-                  <div className="col-6">
+                  <div className="col-5">
                     <img
                       src={stu3}
                       className="d-block w-100"
@@ -425,7 +427,12 @@ const HomePage = () => {
             </div>
 
             {/* Contributor 2 */}
-            <div className="col-md-6 col-lg-4">
+            <a 
+              className="col-md-6 col-lg-4 text-decoration-none" 
+              href="https://www.linkedin.com/in/ashusolver/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               <div className="card bg-light h-100 shadow-sm">
                 <div className="card-body text-center">
                   <img
@@ -440,7 +447,7 @@ const HomePage = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Contributor 3 */}
             <div className="col-md-6 col-lg-4">

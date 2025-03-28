@@ -35,11 +35,11 @@ const StudentLayout = () => {
         <Nav.Link href="/my-course">My Course</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Button className="btn-light me-2" href="/cart">
-          <i className="fa fa-shopping-cart me-1" aria-hidden="true"></i>
+        <Nav.Link className="me-2 text-warning" href="/cart">
+          <i className="fa fa-cart-plus me-1"></i>
           Cart
           <span className="badge bg-danger ms-1">{itemCount}</span>
-        </Button>
+        </Nav.Link>
       </Nav.Item>
     </>
   );

@@ -27,7 +27,7 @@ const Layout = () => {
   }, []);
 
   const handleLogout = () => {
-    setShowLogoutModal(true); // Hiển thị cửa sổ xác nhận khi nhấn logout
+    setShowLogoutModal(true); 
   };
 
   const confirmLogout = () => {
@@ -41,7 +41,7 @@ const Layout = () => {
   };
 
   const cancelLogout = () => {
-    setShowLogoutModal(false); // Ẩn cửa sổ xác nhận khi hủy logout
+    setShowLogoutModal(false); 
   };
 
   return (
@@ -103,19 +103,19 @@ const Layout = () => {
                   </Nav.Item>
                   
                     <Nav.Item>
-                      <Nav.Link href="/list-courses">List Courses</Nav.Link>
+                      <Nav.Link href="/list-courses">Courses List</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link href="/instructor-app" target="_blank">Teach on MOOC@IIITA</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link href="/login" className="text-warning">
-                        <i className="bi bi-door-open"></i> Log in
+                        <i className="fas fa-sign-in-alt"></i> Log in
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Button className="btn-primary" href="/register">
-                        Register
+                        Sign Up
                       </Button>
                     </Nav.Item>
                   </>

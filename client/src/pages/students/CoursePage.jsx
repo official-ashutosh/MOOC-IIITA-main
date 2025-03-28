@@ -6,6 +6,7 @@ import CourseCard from "../../Components/CourseCard";
 import Topic from "../../../../models/TopicEnum.js";
 import { CoursesContext } from "../../contexts/CoursesContext.jsx";
 import imgSample from "../../../images/course.png";
+import bgi from "../../../images/header-background.png";
 import { useNotification } from "../../contexts/NotificationContext ";
 // import { addToCart } from "../../services/cartsService.js";
 import { Toast, ToastContainer } from "react-bootstrap";
@@ -139,137 +140,137 @@ const CoursePage = () => {
       )}     */}
       {renderToast()}
       
-      <section className="bg-primary text-light p-5">
-  <div className="container">
-    <div className="row">
-      <div className="d-md-flex justify-content-between align-items-center">
-        <div className="col-4">
-          <h2 className="mb-3 mb-md-0">
-            What are you <span className="text-warning">looking</span> for?
-          </h2>
-        </div>
-        <div className="col">
-          <div className="input-group news-input shadow">
-            <span className="input-group-text bg-warning text-dark">
-              <i className="fa fa-search" aria-hidden="true"></i>
-            </span>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search for courses, topics..."
-              value={searchValue}
-              onChange={(e) => {
-                e.preventDefault();
-                setSearchValue(e.target.value);
-              }}
-            />
-            <button className="btn btn-success" onClick={handleSearch}>
-              Search
-            </button>
+      <section className="text-light p-5" style={{ background: `linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${bgi}) center center no-repeat` }}>
+      <div className="container">
+        <div className="row">
+          <div className="d-md-flex justify-content-between align-items-center">
+            <div className="col-4">
+              <h2 className="mb-3 mb-md-0">
+                What are you <span className="text-warning">looking</span> for?
+              </h2>
+            </div>
+            <div className="col">
+              <div className="input-group news-input shadow">
+                <span className="input-group-text bg-warning text-dark">
+                  <i className="fa fa-search" aria-hidden="true"></i>
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search for courses, topics..."
+                  value={searchValue}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setSearchValue(e.target.value);
+                  }}
+                />
+                <button className="btn btn-success" onClick={handleSearch}>
+                  Search
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section className="p-5">
-  <div className="container">
-    {loading ? (
-      <AnimatedProgressBar />
-    ) : (
-      <div className="row">
-        {/* Filter Section */}
-        <div className="col-md-3">
-          <div className="card p-3 shadow">
-            <h4 className="text-warning">Filter Options</h4>
-            <div className="input-group pb-4">
-              <span className="input-group-text bg-warning text-light">
-                <i className="fa fa-sort" aria-hidden="true"></i>
-              </span>
-              <select
-                className="form-select"
-                value={selectedSort}
-                onChange={(e) => {
-                  e.preventDefault();
-                  setCurrentPage(1);
-                  setSelectedSort(e.target.value);
-                }}
-              >
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="highestPrice">Highest Price</option>
-                <option value="lowestPrice">Lowest Price</option>
-              </select>
-            </div>
-            <ul className="list-group">
-              <li className="list-group-item bg-warning text-light text-center">
-                <b>Topics</b>
-              </li>
-              {topics.map((topic) => (
-                <li className="list-group-item" key={topic}>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      value={topic}
-                      checked={selectedTopic === topic}
+      <section className="p-5">
+        <div className="container">
+          {loading ? (
+            <AnimatedProgressBar />
+          ) : (
+            <div className="row">
+              {/* Filter Section */}
+              <div className="col-md-3">
+                <div className="card p-3 shadow">
+                  <h4 className="text-warning">Filter Options</h4>
+                  <div className="input-group pb-4">
+                    <span className="input-group-text bg-primary text-light">
+                      <i className="fa fa-sort" aria-hidden="true"></i>
+                    </span>
+                    <select
+                      className="form-select"
+                      value={selectedSort}
                       onChange={(e) => {
                         e.preventDefault();
-                        setSelectedTopic(topic);
                         setCurrentPage(1);
+                        setSelectedSort(e.target.value);
                       }}
-                      id={`radio-${topic}`}
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor={`radio-${topic}`}
                     >
-                      {topic.toUpperCase()}
-                    </label>
+                      <option value="newest">Newest</option>
+                      <option value="oldest">Oldest</option>
+                      <option value="highestPrice">Highest Price</option>
+                      <option value="lowestPrice">Lowest Price</option>
+                    </select>
                   </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        {/* Course Section */}
-        <div className="col-md-9">
-          <div className="row row-cols-1 row-cols-md-3 g-4 pb-4">
-            {courses.listCourses.length === 0 ? (
-              <p className="fs-3 text-center text-danger">No Courses Found</p>
-            ) : (
-              courses.listCourses.map((course) => (
-                <div key={course._id}>
-                  <CourseCard course={course}>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <Link
-                        to="/course-intro"
-                        state={course}
-                        className="btn btn-outline-primary w-100 me-2"
-                      >
-                        View Intro
-                      </Link>
-                      <button
-                        className="btn btn-outline-warning"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleAddToCart(course._id);
-                        }}
-                      >
-                        <i className="bi bi-cart4"></i>
-                      </button>
-                    </div>
-                  </CourseCard>
+                  <ul className="list-group">
+                    <li className="list-group-item bg-warning text-light text-center">
+                      <b>Topics</b>
+                    </li>
+                    {topics.map((topic) => (
+                      <li className="list-group-item" key={topic}>
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            value={topic}
+                            checked={selectedTopic === topic}
+                            onChange={(e) => {
+                              e.preventDefault();
+                              setSelectedTopic(topic);
+                              setCurrentPage(1);
+                            }}
+                            id={`radio-${topic}`}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor={`radio-${topic}`}
+                          >
+                            {topic.toUpperCase()}
+                          </label>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))
-            )}
-          </div>
+              </div>
+              {/* Course Section */}
+              <div className="col-md-9">
+                <div className="row row-cols-1 row-cols-md-3 g-4 pb-4">
+                  {courses.listCourses.length === 0 ? (
+                    <p className="fs-3 text-center text-danger">No Courses Found</p>
+                  ) : (
+                    courses.listCourses.map((course) => (
+                      <div key={course._id}>
+                        <CourseCard course={course}>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <Link
+                              to="/course-intro"
+                              state={course}
+                              className="btn btn-outline-primary w-100 me-2"
+                            >
+                              View Intro
+                            </Link>
+                            <button
+                              className="btn btn-outline-warning"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleAddToCart(course._id);
+                              }}
+                            >
+                              <i className="bi bi-cart4"></i>
+                            </button>
+                          </div>
+                        </CourseCard>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-    )}
-  </div>
-</section>
+      </section>
 
 {/* Pagination */}
 {!loading && pages.length > 0 && (
@@ -347,15 +348,23 @@ const CoursePage = () => {
           <li className="list-group-item bg-dark text-light">
             <b>5.</b> Explore entrepreneurship for leveraging technology in business.
           </li>
+          <li className="list-group-item bg-dark text-light">
+            <b>6.</b> Prepare with hands-on test assessments to track progress effectively.
+          </li>
+          <li className="list-group-item bg-dark text-light">
+            <b>7.</b> Enhance critical thinking with real-world problem-solving challenges.
+          </li>
         </ul>
+
         <p className="my-4">
           Transform your aspirations into achievements with MOOC@IIITA and shape a brighter future together.
         </p>
       </div>
       <img
-        className="img-fluid w-50 d-none d-sm-block d-md-block"
+        className="img-fluid"
         src={imgSample}
         alt="MOOC Courses"
+        style={{ width: '38%' }} 
       />
     </div>
   </div>

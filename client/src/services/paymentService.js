@@ -1,7 +1,7 @@
 const stripe = require('stripe')('your-secret-key');
 
 app.post('/create-checkout-session', async (req, res) => {
-  const { lineItems } = req.body; // Expecting cart items from the frontend
+  const { lineItems } = req.body; 
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],

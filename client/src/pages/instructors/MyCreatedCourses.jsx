@@ -8,6 +8,7 @@ import CourseCard from "../../Components/CourseCard";
 import Topic from "../../../../models/TopicEnum";
 import { UserContext } from "../../contexts/UserContext";
 import "../../styles/cardHover.css";
+import bgi from "../../../images/header-background.png";
 import { Link } from "react-router-dom";
 
 const MyCreatedCourses = () => {
@@ -80,39 +81,61 @@ const MyCreatedCourses = () => {
 
   return (
     <>
-      <section className="bg-primary text-light p-5">
+      <section
+        className="text-light p-4"
+        style={{
+          background: `linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${bgi}) center center no-repeat`,
+        }}
+      >
         <div className="container">
-          <div className="row">
-            <div className="d-md-flex justify-content-between align-items-center">
-              <div className="col-3">
-                <h2 className="mb-3 mb-md-0">
-                  My <span className="text-warning">Created</span> Courses
-                </h2>
-              </div>
-              <div className="col">
-                <div className="input-group news-input">
-                  <span className="input-group-text">
-                    <i className="fa fa-search" aria-hidden="true"></i>
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search..."
-                    value={searchValue}
-                    onChange={(e) => {
-                      e.preventDefault();
-                      setSearchValue(e.target.value);
-                    }}
-                  />
-                  <div className="btn btn-success" onClick={handleSearch}>
-                    Search
-                  </div>
-                </div>
+          <div className="row align-items-center">
+            <div className="col-md-6 text-center text-md-start">
+              <h2
+                className="mb-3"
+                style={{ color: "", fontFamily: "'Georgia', serif", fontWeight: "bold" }}
+              >
+                My <span className="text-warning">Created</span> Courses
+              </h2>
+              <p
+                className="lead"
+                style={{ fontFamily: "'Times New Roman', serif", fontStyle: "italic" }}
+              >
+                Browse and explore the courses you've created to inspire others!
+              </p>
+            </div>
+            <div className="col-md-6">
+              <div className="input-group news-input shadow-lg">
+                <span className="input-group-text bg-warning ">
+                  <i className="fa fa-search" aria-hidden="true"></i>
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search courses..."
+                  value={searchValue}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setSearchValue(e.target.value);
+                  }}
+                  style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+                />
+                <button
+                  className="btn btn-success"
+                  style={{
+                    borderTopLeftRadius: 0,
+                    borderBottomLeftRadius: 0,
+                  }}
+                  onClick={handleSearch}
+                >
+                  Search
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+
 
       <section className="p-5">
         <div className="container">
@@ -123,7 +146,7 @@ const MyCreatedCourses = () => {
               <div className="row">
                 <div className="col-2">
                   <div className="input-group pb-4">
-                    <span className="input-group-text bg-warning text-light">
+                    <span className="input-group-text bg-primary text-light">
                       <i className="fa fa-sort" aria-hidden="true"></i>
                     </span>
                     <select

@@ -40,7 +40,7 @@ const FeedbackForm = () => {
       zIndex: 1,
     },
     formContainer: {
-      maxWidth: '700px',
+      maxWidth: '900px',
       margin: '50px auto',
       padding: '30px',
       backgroundColor: 'rgba(0, 123, 255, 0.85)',

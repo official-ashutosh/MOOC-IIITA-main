@@ -270,11 +270,11 @@ const UserDetail = () => {
           </Modal.Footer>
         </Modal>
         <Container>
-          <h1 className="mt-3"> User Detail</h1>
+          <h1 className="mt-1"> User Detail</h1>
           <section className="" style={{ backgroundColor: "#ffffff" }}>
-            <Container className="py-5 h-100">
+            <Container className="py-2 h-100">
               <Row className="justify-content-center align-items-center h-100">
-                <Col lg="6" className="mb-4 mb-lg-0">
+                <Col lg="8" className="mb-4 mb-lg-0">
                   <Card className="mb-3" style={{ borderRadius: ".5rem" }}>
                     <Row className="g-0" style={{ height: "450px" }}>
                       <Col
@@ -360,7 +360,7 @@ const UserDetail = () => {
 
           {user.role == Role.INSTRUCTOR ? (
             <div className="mb-5">
-              <h1 className="mt-3 mb-3"> Course of Instructor</h1>
+              <h1 className="mt-3 mb-3"> Courses of Instructor</h1>
 
               <div className="text-end mb-3 mt-3">
                 <div className="input-group news-input">
@@ -389,7 +389,7 @@ const UserDetail = () => {
             </div>
           ) : user.role == Role.STUDENT ? (
             <div className="mb-5">
-              <h1 className="mt-3 mb-3"> Course of Student</h1>
+              <h1 className="mt-3 mb-3"> Courses of Student</h1>
 
               <div className="text-end mb-3 mt-3">
                 <div className="input-group news-input">

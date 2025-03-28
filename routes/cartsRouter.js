@@ -9,8 +9,6 @@ const router = express.Router();
 
 router.post("/addToCart", auth, addToCart);
 
-// Lỗi khi tải khóa học
-
 router.delete("/removeFromCart/:cartId/:courseId", removeFromCart);
 
 router.delete("/clearCart",auth, clearCart)
