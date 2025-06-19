@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import leaning from "../../../images/learning.png";
 import fundamentals from "../../../images/fundamentals.png";
@@ -15,14 +14,17 @@ import con2 from "../../../images/krish_iit9.jpg";
 import con3 from "../../../images/aniket_iit18.jpg";
 
 const HomePage = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user} = useContext(UserContext);
   console.log(user);
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
   };
   return (
     <>
-          <section className="bg-dark text-light p-lg-5 pt-lg-5 text-center text-sm-start">
+      <section
+        className="text-light p-lg-5 pt-lg-5 text-center text-sm-start"
+        style={{ backgroundColor: "rgb(125, 114, 108)" }}
+      >
       <div className="container py-5">
         <div className="d-sm-flex align-items-center justify-content-between">
           <div className="me-3">
@@ -120,7 +122,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section id="learn" className="p-5">
+      <section id="learn" className="p-1">
         <div className="container">
           <div className="row align-items-center justify-content-between">
             <div className="col-md">
@@ -149,7 +151,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section id="instructors" className="p-5 bg-dark">
+      <section id="instructors" className="p-5" style={{ backgroundColor: "rgb(125, 114, 108)" }}>
         <div className="container">
           <h2 className="text-center text-white">Our Instructors</h2>
           <p className="lead text-center text-white mb-5">
@@ -398,13 +400,13 @@ const HomePage = () => {
             </button>
           </div>
         </div>
+      </section>
 
         
       {/* Contributors Section */}
-      <section id="contributors" className="p-5 bg-dark">
-        <div className="container">
+      <section id="contributors" className="p-5 bg-secondary">
           <h2 className="text-center text-white">Meet Our Contributors</h2>
-          <p className="lead text-center text-white mb-5">
+          <p className="lead text-center text-white mb-4">
             "Alone we can do so little; together we can do so much." — Helen Keller
           </p>
           <div className="row g-4">
@@ -467,10 +469,6 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-
       </section>
     </>
   );

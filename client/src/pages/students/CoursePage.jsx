@@ -7,12 +7,10 @@ import Topic from "../../../../models/TopicEnum.js";
 import { CoursesContext } from "../../contexts/CoursesContext.jsx";
 import imgSample from "../../../images/course.png";
 import bgi from "../../../images/header-background.png";
-import { useNotification } from "../../contexts/NotificationContext ";
-// import { addToCart } from "../../services/cartsService.js";
 import { Toast, ToastContainer } from "react-bootstrap";
 import { addToCart, getCart } from "../../services/cartsService.js";
 import { CartContext } from "../../contexts/CartContext";
-import { Link, useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const CoursePage = () => {
@@ -24,7 +22,7 @@ const CoursePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [pages, setPages] = useState([]);
-  const [notification, setNotification] = useState({ message: "", type: "" });
+  const [notification] = useState({ message: "", type: "" });
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("success");
@@ -129,15 +127,6 @@ const CoursePage = () => {
   };
   return (
     <>
-      {/* {notification.message && (
-        <div
-          className={`alert alert-${
-            notification.type === "success" ? "success" : "danger"
-          }`}
-        >
-          {notification.message}
-        </div>
-      )}     */}
       {renderToast()}
       
       <section className="text-light p-5" style={{ background: `linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${bgi}) center center no-repeat` }}>

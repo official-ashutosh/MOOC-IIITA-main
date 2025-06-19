@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.bg-r {
+  background-color: rgb(125, 114, 108);
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -38,5 +42,5 @@
 }
 
 .read-the-docs {
-  color: #888;
+  color: #888888;
 }

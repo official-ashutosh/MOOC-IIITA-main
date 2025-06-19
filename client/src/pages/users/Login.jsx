@@ -1,23 +1,9 @@
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Form,
-  Button,
-  InputGroup,
-} from "react-bootstrap";
+import {Container, Row, Col, Card, Form, Button,} from "react-bootstrap";
 import Alert from "../../Components/Alert";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import React from "react";
 import { CDBBtn, CDBIcon } from "cdbreact";
-import {
-  getUser,
-  loginUser,
-  loginUserSocial,
-} from "../../services/usersService";
-import { Link } from "react-router-dom";
+import {getUser, loginUser} from "../../services/usersService";
 import { UserContext } from "../../contexts/UserContext";
 import Role from "../../../../models/RoleEnum";
 import logo from "../../../images/MOOC@IIITA_logo.png";
@@ -25,14 +11,11 @@ import logo from "../../../images/MOOC@IIITA_logo.png";
 const Login = () => {
   const { setUser } = useContext(UserContext);
 
-  //error State
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  //Handle login
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -40,7 +23,6 @@ const Login = () => {
       const token = data.token;
       const dataUser = await getUser(token);
       setUser({
-        // id: dataUser._id,
         token,
         email: dataUser.email,
         name: dataUser.name,
@@ -60,87 +42,6 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLogin = async (e) => {
-    window.open("http://online-courses-web.onrender.com/auth/google", "_self");
-    e.preventDefault();
-    try {
-      const data = await loginUserSocial();
-      const token = data.token;
-      const dataUser = await getUser(token);
-      setUser({
-        token,
-        email: dataUser.user.email,
-        name: dataUser.user.name,
-        picture: dataUser.user.picture,
-        role: dataUser.user.role,
-      });
-
-      if (dataUser.user.role === Role.ADMIN) {
-        navigate("/admin");
-      } else if (dataUser.user === Role.INSTRUCTOR) {
-        navigate("/instructor");
-      } else {
-        navigate("/");
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const handleFacebookLogin = async (e) => {
-    window.open(`http://online-courses-web.onrender.com/auth/facebook`, "_self");
-
-    e.preventDefault();
-    try {
-      const data = await loginUserSocial();
-      const token = data.token;
-      const dataUser = await getUser(token);
-      setUser({
-        token,
-        email: dataUser.user.email,
-        name: dataUser.user.name,
-        picture: dataUser.user.picture,
-        role: dataUser.user.role,
-      });
-
-      if (dataUser.user.role === Role.ADMIN) {
-        navigate("/admin");
-      } else if (dataUser.user === Role.INSTRUCTOR) {
-        navigate("/instructor");
-      } else {
-        navigate("/");
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const handleGithubLogin = async (e) => {
-    window.open(`http://online-courses-web.onrender.com/auth/github`, "_self");
-    e.preventDefault();
-    try {
-      const data = await loginUserSocial();
-      const token = data.token;
-      const dataUser = await getUser(token);
-      setUser({
-        token,
-        email: dataUser.user.email,
-        name: dataUser.user.name,
-        picture: dataUser.user.picture,
-        role: dataUser.user.role,
-      });
-
-      if (dataUser.user.role === Role.ADMIN) {
-        navigate("/admin");
-      } else if (dataUser.user === Role.INSTRUCTOR) {
-        navigate("/instructor");
-      } else {
-        navigate("/");
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
   return (
     <Container className="p-4">
       <Row>
@@ -235,7 +136,7 @@ const Login = () => {
                 borderRadius: "50%",
                 boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
               }}
-              onClick={handleFacebookLogin}
+              onClick={() => (window.location.hash = "facebook")}
             >
               <CDBIcon fab icon="facebook-f" />
             </CDBBtn>
@@ -246,7 +147,7 @@ const Login = () => {
                 borderRadius: "50%",
                 boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
               }}
-              onClick={handleGithubLogin}
+              onClick={() => (window.location.hash = "github")}
             >
               <CDBIcon fab icon="github" />
             </CDBBtn>
@@ -257,7 +158,7 @@ const Login = () => {
                 borderRadius: "50%",
                 boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
               }}
-              onClick={handleGoogleLogin}
+              onClick={() => (window.location.hash = "google")}
             >
               <CDBIcon fab icon="google-plus-g" />
             </CDBBtn>

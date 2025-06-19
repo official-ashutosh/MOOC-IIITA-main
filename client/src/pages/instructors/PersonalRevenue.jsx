@@ -17,8 +17,8 @@ const PersonalRevenue = () => {
   const { statisticsInstructor, setStatisticsInstructor } = useContext(
     StatisticsInstructorContext
   );
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const [error] = useState(null);
+  const [success] = useState(null);
 
   useEffect(() => {
     setTimeout(async () => {

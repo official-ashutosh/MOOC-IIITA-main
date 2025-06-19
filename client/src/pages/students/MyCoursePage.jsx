@@ -24,13 +24,13 @@ const MyCoursePage = () => {
         const coursesWithReviews = await Promise.all(
           fetchedCourses.map(async (course) => {
             const reviewData = await getMyReviewForCourse(course._id);
-            console.log("review page", reviewData);
-            return { ...course, review: reviewData || "Not reviewed yet" };
+            console.log("review trong page", reviewData);
+            return { ...course, review: reviewData || "Chưa review" };
           })
         );
         setCourses(coursesWithReviews);
       } catch (error) {
-        setError("Error loading course: " + error.message);
+        setError("Lỗi khi tải khóa học: " + error.message);
       }
       setLoading(false);
     };
@@ -82,7 +82,7 @@ const MyCoursePage = () => {
                   <Button
                     key={x + 1}
                     onClick={() => paginate(x + 1)}
-                    className="page-item mx-2"
+                    className="page-item"
                   >
                     {x + 1}
                   </Button>
