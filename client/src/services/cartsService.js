@@ -1,4 +1,3 @@
-
 const getCart = async () => {
   try {
     const res = await fetch("/api/carts/getCart", {
@@ -76,7 +75,7 @@ const addToCart = async (courseId) => {
   });
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data.error || "Không thể thêm vào giỏ hàng.");
+    throw new Error(data.error || "Unable to add to cart.");
   }
   console.log(data);
   return data; 

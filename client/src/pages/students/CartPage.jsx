@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getCart } from "../../services/cartsService";
 import CartItem from "../../Components/CartItem";
 import Container from "react-bootstrap/Container";
@@ -105,7 +105,7 @@ const CartPage = () => {
                   block
                   onClick={() => {
                     if (!canCheckout) {
-                      toast.warn("Bạn không có sản phẩm để thanh toán");
+                      toast.warn("You have no items to checkout");
                     }
                   }}
                   disabled={!canCheckout}

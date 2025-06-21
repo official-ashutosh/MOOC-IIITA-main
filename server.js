@@ -12,6 +12,7 @@ import { cartsRoutes } from "./routes/cartsRouter.js";
 import { commentsRoutes } from "./routes/commentsRoutes.js";
 import { reviewsRoutes } from "./routes/reviewsRoutes.js";
 import { documentsRoutes } from "./routes/documentsRoutes.js";
+import { invoicesRoutes } from "./routes/invoicesRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,6 +35,8 @@ app.use(
   })
 );
 app.use(express.json({ limit: "200mb" }));
+
+// API routes
 app.use("/api/users", usersRoutes);
 app.use("/api/courses", coursesRoutes);
 app.use("/api/carts", cartsRoutes);
@@ -41,23 +44,25 @@ app.use("/api/lessons", lessonsRoutes);
 app.use("/api/documents", documentsRoutes);
 app.use("/api/comments", commentsRoutes);
 app.use("/api/reviews", reviewsRoutes);
+app.use("/api/invoices", invoicesRoutes);
 app.use("/auth", authsRoutes);
 
+// Serve static files
 app.use(express.static(path.join(__dirname, "/client/dist")));
+
+// Catch-all route (must be last)
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/client/dist/index.html"))
 );
-
 
 mongoose
   .connect('mongodb+srv://tmkoc6465:O0QXw5vqFdPI4olt@kp.dirye.mongodb.net/test')
   .then(() => {
     console.log("Connected to the database");
-
-app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Listening on port 5000");
-  });
-})
-.catch((error) => {
+    });
+  })
+  .catch((error) => {
     console.log("Error connecting to the database: ", error);
-});
+  });

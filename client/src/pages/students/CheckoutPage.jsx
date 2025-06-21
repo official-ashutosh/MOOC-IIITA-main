@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import CartItemCheckout from "../../Components/CartItemCheckout";
 import "./styles/CheckoutPage.css"; 
-import { checkout } from "../../services/invoiceService";
+import { checkout, enrollCourses } from "../../services/invoiceService";
 import { getCart } from "../../services/cartsService";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -50,20 +50,16 @@ const CheckoutPage = () => {
     setPaymentMethod(method); 
     };
     const handleCheckout = async () => {
-      
       try {
-        if (!paymentMethod) {
-          toast.error("Please select payment method");
-          return;
-        }      
+        // Instead of payment, just enroll the student in the courses
         const updatedCart = await getCart();
-        setCartItems(updatedCart.courseDetails); 
-        const data = await checkout(updatedCart.courseDetails, paymentMethod);
-        toast.success("Payment successfully");
+        setCartItems(updatedCart.courseDetails);
+        const data = await enrollCourses(updatedCart.courseDetails);
+        toast.success("Courses added to your account!");
         setItemCount(0);
         navigate("/my-course");
       } catch (error) {
-        toast.error("Payment failed " + error.message);
+        toast.error("Enrollment failed: " + error.message);
       }
     };
 

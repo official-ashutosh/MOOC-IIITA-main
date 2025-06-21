@@ -1,33 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { UsersContext } from "../../contexts/UsersContext";
-import {
-  changeUserStatus,
-  getUserListByRole,
-} from "../../services/usersService";
-import Role from "../../../../models/RoleEnum";
-import Container from "react-bootstrap/Container";
-import Alert from "../../Components/Alert";
-
-import DataTable, {
-  Alignment,
-  createTheme,
-  defaultThemes,
-} from "react-data-table-component";
-import FormCheckInput from "react-bootstrap/FormCheckInput";
-
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Navbar from "react-bootstrap/Navbar";
-import AdminNavBar from "../../Components/AdminNavBar";
-import { Table } from "react-bootstrap";
-import { customStyles } from "../../Components/customStyles/datatableCustom";
-
-import Image from "react-bootstrap/esm/Image";
+import { useContext, useEffect } from "react";
 import { StatisticsContext } from "../../contexts/StatisticsContext";
 import { getAllInvoiceItemsAdmin } from "../../services/InvoiceItemService";
+import DataTable from "react-data-table-component";
+import AdminNavBar from "../../Components/AdminNavBar";
 
-import "react-datepicker/dist/react-datepicker.css";
-import { getAllCourseAdmin } from "../../services/coursesService";
 const RevenueStatistic = () => {
   const { statistics, setStatistics } = useContext(StatisticsContext);
 
@@ -46,14 +22,12 @@ const RevenueStatistic = () => {
       name: "Course Name",
       selector: (row) => row.courseName,
       sortable: true,
-      // width: "200px",
       textAlign: "center",
     },
     {
       name: "Instructor Name",
       selector: (row) => row.instructorName,
       sortable: true,
-      // width: "200px",
       textAlign: "center",
     },
     {
@@ -113,7 +87,6 @@ const RevenueStatistic = () => {
             data={statistics.listStatistics}
             fixedHeader
             pagination
-            customStyles={customStyles}
           ></DataTable>
           <h2 className="text-end mt-3">
             {" "}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getMyCourse } from "../../services/invoiceService";
 import MyCourseCard from "../../Components/MyCourseCard";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getMyReviewForCourse } from "../../services/reviewsService";
 import { Form, Button } from "react-bootstrap";
@@ -30,7 +30,7 @@ const MyCoursePage = () => {
         );
         setCourses(coursesWithReviews);
       } catch (error) {
-        setError("Lỗi khi tải khóa học: " + error.message);
+        setError("Error loading courses: " + error.message);
       }
       setLoading(false);
     };
@@ -96,6 +96,5 @@ const MyCoursePage = () => {
     </div>
   );
 };
-
 
 export default MyCoursePage;
