@@ -19,18 +19,31 @@ const UpdateCourseIntro = () => {
     averageStars: 0,
     reviews: [],
   });
-  console.log("du lieu: ", formData);
   useEffect(() => {
-    setTimeout(async () => {
-      const { reviews, averageStars } = await getCourse(formData._id);
-      setFormData({
-        ...formData,
-        averageStars,
-        reviews,
-      });
-      setLoading(false);
-    }, 0);
-  }, []);
+    let active = true;
+
+    const loadCourse = async () => {
+      try {
+        const { reviews, averageStars } = await getCourse(formData._id);
+        if (active) {
+          setFormData((currentFormData) => ({
+            ...currentFormData,
+            averageStars,
+            reviews,
+          }));
+        }
+      } catch (error) {
+        console.error("Error loading course:", error);
+      } finally {
+        if (active) setLoading(false);
+      }
+    };
+
+    loadCourse();
+    return () => {
+      active = false;
+    };
+  }, [formData._id]);
 
   return (
     <>

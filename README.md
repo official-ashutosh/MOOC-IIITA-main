@@ -71,7 +71,7 @@ npm install
 SECRET=your_jwt_secret
 SESSION_SECRET=your_session_secret
 MONGODB_URI=your_mongodb_connection_string
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=http://localhost:3000
 CLOUD_NAME=your_cloudinary_name
 CLOUD_KEY=your_cloudinary_key
 CLOUD_SECRET=your_cloudinary_secret
@@ -93,11 +93,11 @@ npm install
 npm run dev
 ```
 
-- The frontend will run on `http://localhost:5173` (default Vite port).
+- The frontend will run on `http://localhost:3000` (configured Vite port).
 
 ### 4. Access the App
 
-- Open your browser at `http://localhost:5173`
+- Open your browser at `http://localhost:3000`
 - Register as a student, instructor, or admin (admin accounts may need to be seeded manually in the database).
 
 ## Usage
@@ -121,6 +121,18 @@ npm run dev
 ## Environment Variables
 
 See `.env.example` for all required environment variables.
+
+## Deploy on Render
+
+The repository includes a Render Blueprint in `render.yaml`. In the Render
+dashboard, create a new Blueprint and connect this repository. Before creating
+the service, provide the MongoDB Atlas URI, email credentials, and Cloudinary
+credentials when prompted. The Blueprint generates the JWT and session secrets
+and deploys the combined frontend and backend at `https://mooc-iiita.onrender.com`.
+Configure the Atlas network allowlist for the Render service before deploying.
+
+The free web service may spin down after inactivity. Its first request after a
+spin-down can take longer while the service starts.
 
 ## Contributing
 

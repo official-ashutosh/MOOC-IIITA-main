@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Button, Col, Container, Row, Card, Form } from "react-bootstrap";
 import "./MyProfilePage.css";
 import { UserContext } from "../../../contexts/UserContext";

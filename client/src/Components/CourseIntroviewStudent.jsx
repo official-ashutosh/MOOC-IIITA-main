@@ -1,5 +1,6 @@
+import PropTypes from "prop-types";
+
 const CourseIntroViewStudent = ({ formData, children }) => {
-  console.log("trung binhf", formData.averageStars)
   return (
     <>
       <section className="bg-dark text-light">
@@ -67,6 +68,19 @@ const CourseIntroViewStudent = ({ formData, children }) => {
       </section>
     </>
   );
+};
+
+CourseIntroViewStudent.propTypes = {
+  formData: PropTypes.shape({
+    picture: PropTypes.string,
+    title: PropTypes.string,
+    instructorName: PropTypes.string,
+    averageStars: PropTypes.number,
+    price: PropTypes.number,
+    topic: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
+  children: PropTypes.node,
 };
 
 export default CourseIntroViewStudent;

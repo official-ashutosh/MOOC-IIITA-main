@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import { Nav, Button } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { CartContext } from "../contexts/CartContext";
 import { getCart } from "../services/cartsService";
 
 const StudentLayout = () => {
-  const { cartItems, setCartItems, itemCount, setItemCount } =
+  const { setCartItems, itemCount, setItemCount } =
     useContext(CartContext);
   
   useEffect(() => {

@@ -2,7 +2,6 @@ import Alert from "../../Components/Alert";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
-import React from "react";
 import { registerUser } from "../../services/usersService";
 import {
   Container,
@@ -11,13 +10,12 @@ import {
   Card,
   Form,
   Button,
-  InputGroup,
 } from "react-bootstrap";
 import logo from "../../../images/MOOC@IIITA_logo.png";
 
 const Register = () => {
   const [error, setError] = useState(null);
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",

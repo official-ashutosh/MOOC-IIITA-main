@@ -29,15 +29,29 @@ const UpdateCourseDetails = () => {
   });
 
   useEffect(() => {
-    setTimeout(async () => {
-      const lessons = await getCourseLessons(formData._id);
-      setFormData({
-        ...formData,
-        lessons,
-      });
-      setLoading(false);
-    }, 0);
-  }, []);
+    let active = true;
+
+    const loadLessons = async () => {
+      try {
+        const lessons = await getCourseLessons(formData._id);
+        if (active) {
+          setFormData((currentFormData) => ({
+            ...currentFormData,
+            lessons,
+          }));
+        }
+      } catch (error) {
+        console.error("Error loading course lessons:", error);
+      } finally {
+        if (active) setLoading(false);
+      }
+    };
+
+    loadLessons();
+    return () => {
+      active = false;
+    };
+  }, [formData._id]);
 
   const handleDelete = async (_id) => {
     if (confirm("Confirm delete course?")) {

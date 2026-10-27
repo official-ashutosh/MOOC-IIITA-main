@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Card, Form } from "react-bootstrap";
 import { registerInstructor } from "../../services/usersService";
 import logo from "../../../images/MOOC@IIITA_logo.png";
@@ -55,7 +55,7 @@ const InstructorRegister = () => {
             Register an Instructor
           </h1>
           <p className="text-center text-muted mb-5">
-            "Education is the key to unlocking the world, a passport to freedom."
+            &quot;Education is the key to unlocking the world, a passport to freedom.&quot;
           </p>
           <Container className="d-flex justify-content-center align-items-center">
             <Card className="shadow-lg" style={{ maxWidth: "1000px", width: "100%", height : "550px",  padding : "20px"}}>

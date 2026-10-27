@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: mooc-iiita
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm ci --include=dev && npm ci --prefix client --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_URL
+        value: https://mooc-iiita.onrender.com
+      - key: SECRET
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: CLOUD_NAME
+        sync: false
+      - key: CLOUD_KEY
+        sync: false
+      - key: CLOUD_SECRET
+        sync: false

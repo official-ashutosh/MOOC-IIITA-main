@@ -1,4 +1,5 @@
 import userImg from "../../images/user.png";
+import PropTypes from "prop-types";
 
 const CommentCard = ({ comment }) => {
   return (
@@ -30,6 +31,15 @@ const CommentCard = ({ comment }) => {
       </div>
     </>
   );
+};
+
+CommentCard.propTypes = {
+  comment: PropTypes.shape({
+    userPicture: PropTypes.string,
+    userName: PropTypes.string,
+    createdAt: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+    content: PropTypes.string,
+  }).isRequired,
 };
 
 export default CommentCard;

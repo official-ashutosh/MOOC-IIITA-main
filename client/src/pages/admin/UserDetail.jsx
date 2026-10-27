@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Button,
   Col,
@@ -13,7 +13,7 @@ import {
 import { getUserByOther } from "../../services/usersService";
 import userImage from "../../../images/user.png";
 import { UserDetailContext } from "../../contexts/UserDetailContext";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import AdminNavBar from "../../Components/AdminNavBar";
 import Role from "../../../../models/RoleEnum";
 import {
@@ -31,9 +31,7 @@ const UserDetail = () => {
   const { courses, setCourses } = useContext(CoursesByUserContext);
   const { user, setUser } = useContext(UserDetailContext);
   const { state } = useLocation();
-  const [userId] = useState({
-    userId: state.userId,
-  });
+  const userId = state.userId;
 
   const [showPopup, setShowPopup] = useState(false);
   const [courseId, setCourseId] = useState(null);
@@ -44,27 +42,27 @@ const UserDetail = () => {
 
   useEffect(() => {
     setTimeout(async () => {
-      const user = await getUserByOther(userId.userId);
+      const user = await getUserByOther(userId);
 
       setUser(user);
 
       if (user.role == Role.INSTRUCTOR) {
         const listCoursesByInstructor = await getCoursesByInstructorId(
-          userId.userId
+          userId
         );
         setCourses({
           listCoursesByInstructor: listCoursesByInstructor.courses,
           totalRevenuePersonal: listCoursesByInstructor.totalRevenuePersonal,
         });
       } else {
-        const listCoursesByStudent = await getCoursesByStudentId(userId.userId);
+        const listCoursesByStudent = await getCoursesByStudentId(userId);
         setCourses({
           listCoursesByStudent: listCoursesByStudent.courses,
           totalPurchased: listCoursesByStudent.totalPurchased,
         });
       }
     }, 0);
-  }, []);
+  }, [setCourses, setUser, userId]);
 
   const cancelPopupStatus = () => {
     setShowPopup(false);
@@ -83,14 +81,14 @@ const UserDetail = () => {
 
       if (user.role == Role.INSTRUCTOR) {
         const listCoursesByInstructor = await getCoursesByInstructorId(
-          userId.userId
+          userId
         );
         setCourses({
           listCoursesByInstructor: listCoursesByInstructor.courses,
           totalRevenuePersonal: listCoursesByInstructor.totalRevenuePersonal,
         });
       } else {
-        const listCoursesByStudent = await getCoursesByStudentId(userId.userId);
+        const listCoursesByStudent = await getCoursesByStudentId(userId);
         setCourses({
           listCoursesByStudent: listCoursesByStudent.courses,
           totalPurchased: listCoursesByStudent.totalPurchased,

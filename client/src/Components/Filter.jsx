@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { useState } from "react";
 
 const Filter = ({ topics, onFilter }) => {
   const [selectedTopic, setSelectedTopic] = useState("");
@@ -21,6 +22,11 @@ const Filter = ({ topics, onFilter }) => {
       </select>
     </div>
   );
+};
+
+Filter.propTypes = {
+  topics: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onFilter: PropTypes.func.isRequired,
 };
 
 export default Filter;

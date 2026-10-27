@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import {
   Container,
@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import CartItemCheckout from "../../Components/CartItemCheckout";
 import "./styles/CheckoutPage.css"; 
-import { checkout, enrollCourses } from "../../services/invoiceService";
+import { enrollCourses } from "../../services/invoiceService";
 import { getCart } from "../../services/cartsService";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -25,15 +25,7 @@ const CheckoutPage = () => {
     const [paymentMethod, setPaymentMethod] = useState(0);
     const { setItemCount } = useContext(CartContext);
     const navigate = useNavigate();
-    const PaymentMethod = {
-      MOMO: "MoMo",
-      PAYPAL: "PayPal",
-    };
-    useEffect(() => {
-      fetchData();
-    }, []);
-
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
       try {
         const updatedCart = await getCart(); 
         setCartItems(updatedCart.courseDetails);
@@ -45,7 +37,11 @@ const CheckoutPage = () => {
       } catch (error) {
         console.error("Failed to fetch cart data: ", error);
       }
-    };
+    }, [setCartItems]);
+
+    useEffect(() => {
+      fetchData();
+    }, [fetchData]);
     const handlePaymentMethodChange = (method) => {
     setPaymentMethod(method); 
     };
@@ -54,7 +50,7 @@ const CheckoutPage = () => {
         // Instead of payment, just enroll the student in the courses
         const updatedCart = await getCart();
         setCartItems(updatedCart.courseDetails);
-        const data = await enrollCourses(updatedCart.courseDetails);
+        await enrollCourses(updatedCart.courseDetails);
         toast.success("Courses added to your account!");
         setItemCount(0);
         navigate("/my-course");

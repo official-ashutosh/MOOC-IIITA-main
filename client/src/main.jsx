@@ -1,18 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import UserProvider from "./contexts/UserContext.jsx";
-import UsersProvider from "./contexts/UsersContext.jsx";
-import CartProvider from "./contexts/CartContext.jsx";
-import CoursesProvider from "./contexts/CoursesContext.jsx";
-import NotificationProvider from "./contexts/NotificationContext .jsx";
-import StatisticsProvider from "./contexts/StatisticsContext.jsx";
-import UserDetail from "./pages/admin/UserDetail.jsx";
-import UserDetailProvider from "./contexts/UserDetailContext.jsx";
-import StatisticsInstructorProvider from "./contexts/StatisticsIntructorContext.jsx";
-import CoursesByUserProvider, {
-  CoursesByUserContext,
-} from "./contexts/CoursesByUserContext.jsx";
+import UserProvider from "./contexts/UserProvider.jsx";
+import UsersProvider from "./contexts/UsersProvider.jsx";
+import CartProvider from "./contexts/CartProvider.jsx";
+import CoursesProvider from "./contexts/CoursesProvider.jsx";
+import NotificationProvider from "./contexts/NotificationProvider.jsx";
+import StatisticsProvider from "./contexts/StatisticsProvider.jsx";
+import UserDetailProvider from "./contexts/UserDetailProvider.jsx";
+import StatisticsInstructorProvider from "./contexts/StatisticsInstructorProvider.jsx";
+import CoursesByUserProvider from "./contexts/CoursesByUserProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -18,13 +18,13 @@ const CreateDocument = () => {
     variant: "",
   });
 
-  const [formLesson, setFormLesson] = useState({
+  const formLesson = {
     _id: state._id,
     courseId: state.courseId,
     title: state.title,
     description: state.description,
     createdAt: state.createdAt,
-  });
+  };
 
   const [formData, setFormData] = useState({
     title: "",

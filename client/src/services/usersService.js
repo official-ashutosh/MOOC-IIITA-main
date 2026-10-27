@@ -167,7 +167,7 @@ const resetPasswordUser = async (id, token, password) => {
   //   throw Error("Passwords do not match!");
   // }
 
-  const res = await fetch(`/api/users/reset-password/${id}/${token}`, {
+  const response = await fetch(`/api/users/reset-password/${id}/${token}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -175,11 +175,12 @@ const resetPasswordUser = async (id, token, password) => {
     body: JSON.stringify({ password }),
   });
 
-  // Xử lý response ở đây nếu cần
-  // const data = await res.json()
-  // if(!res.ok) {
-  //     throw Error(data.error)
-  // }
+  const data = await response.json();
+  if (!response.ok) {
+    throw Error(data.error || "Failed to reset password.");
+  }
+
+  return data;
 };
 
 //***********************************************REGISTER USER************************** */

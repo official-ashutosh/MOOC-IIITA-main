@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import Alert from "../../Components/Alert";
 
 import DataTable from "react-data-table-component";
-import FormCheckInput from "react-bootstrap/FormCheckInput";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import AdminNavBar from "../../Components/AdminNavBar";
@@ -14,7 +12,6 @@ import {
   getAllCourseAdmin,
 } from "../../services/coursesService";
 import { Button, Image, Modal, Toast, ToastContainer } from "react-bootstrap";
-import styled from "styled-components";
 import userImg from "../../../images/user.png";
 
 const CourseManager = () => {
@@ -31,7 +28,7 @@ const CourseManager = () => {
       const listCourses = await getAllCourseAdmin();
       setCourses({ listCourses });
     }, 0);
-  }, []);
+  }, [setCourses]);
 
   const columns = [
     {

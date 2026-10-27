@@ -1,5 +1,5 @@
-// MyCourseCard.jsx
-import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { createReview, getMyReviewForCourse } from "../services/reviewsService";
@@ -146,6 +146,16 @@ const MyCourseCard = ({ course }) => {
       </Modal>
     </div>
   );
+};
+
+MyCourseCard.propTypes = {
+  course: PropTypes.shape({
+    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    picture: PropTypes.string,
+    title: PropTypes.string,
+    instructorName: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
 };
 
 export default MyCourseCard;

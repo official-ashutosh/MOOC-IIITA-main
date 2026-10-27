@@ -1,24 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 
-const NotificationContext = createContext();
+export const NotificationContext = createContext();
 
 export const useNotification = () => useContext(NotificationContext);
-
-const NotificationProvider = ({ children }) => {
-  const [notification, setNotification] = useState(null);
-
-  const addNotification = (message, type) => {
-    setNotification({ message, type });
-    setTimeout(() => {
-      setNotification(null);
-    }, 3000); //  tự động biến mất sau 3 giây
-  };
-
-  return (
-    <NotificationContext.Provider value={{ notification, addNotification }}>
-      {children}
-    </NotificationContext.Provider>
-  );
-};
-
-export default NotificationProvider;

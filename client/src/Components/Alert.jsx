@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class Alert extends React.Component {
   render() {
@@ -14,5 +15,10 @@ class Alert extends React.Component {
     return <div className={alertClass}>{msg}</div>;
   }
 }
+
+Alert.propTypes = {
+  msg: PropTypes.node.isRequired,
+  type: PropTypes.oneOf(["success", "error"]).isRequired,
+};
 
 export default Alert;

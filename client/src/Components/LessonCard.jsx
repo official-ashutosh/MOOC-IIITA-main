@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const LessonCard = ({ lesson, children }) => {
   return (
     <>
@@ -17,6 +19,15 @@ const LessonCard = ({ lesson, children }) => {
       </div>
     </>
   );
+};
+
+LessonCard.propTypes = {
+  lesson: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    createdAt: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  }).isRequired,
+  children: PropTypes.node,
 };
 
 export default LessonCard;

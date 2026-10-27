@@ -1,4 +1,5 @@
 import userImg from "../../images/user.png";
+import PropTypes from "prop-types";
 
 const ReviewCard = ({ review }) => {
   return (
@@ -43,6 +44,16 @@ const ReviewCard = ({ review }) => {
       </div>
     </>
   );
+};
+
+ReviewCard.propTypes = {
+  review: PropTypes.shape({
+    userPicture: PropTypes.string,
+    userName: PropTypes.string,
+    createdAt: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+    content: PropTypes.string,
+    ratingStar: PropTypes.number,
+  }).isRequired,
 };
 
 export default ReviewCard;

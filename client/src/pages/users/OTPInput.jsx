@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import OtpInput from "react-otp-input";
 import {
@@ -6,9 +6,7 @@ import {
     Row,
     Col,
     Card,
-    Form,
     Button,
-    InputGroup,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { checkOTPUser } from "../../services/usersService";
@@ -21,12 +19,9 @@ const OTPInput = () => {
     const navigate = useNavigate();
 
     const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
     const [otp, setOTP] = useState("");
     const { user } = useContext(UserContext);
     const [showSuccessVerify, setShowSuccessVerify] = useState(false);
-    console.log(user.email);
-    // console.log(otp)
     const handleVerify = async (e) => {
         e.preventDefault();
         try {

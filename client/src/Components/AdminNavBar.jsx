@@ -3,7 +3,6 @@
 // import { Link } from "react-router-dom";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { SubMenu } from "react-pro-sidebar";
-import { Service } from "../../images/icons/Service";
 import { menuClasses } from "react-pro-sidebar";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUsersBetweenLines } from "react-icons/fa6";
@@ -21,11 +20,6 @@ import "../styles/sidebar.css";
 
 const AdminNavBar = () => {
   const { setUser } = useContext(UserContext);
-  const [collapsed, setCollapsed] = useState(false);
-  const [toggled, setToggled] = useState(false);
-  const [broken, setBroken] = useState(false);
-  const [rtl, setRtl] = useState(false);
-  const [hasImage, setHasImage] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
   const SidebarContainer = styled.div`

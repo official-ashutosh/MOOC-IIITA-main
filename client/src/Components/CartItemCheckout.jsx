@@ -1,6 +1,5 @@
-import React from "react";
+import PropTypes from "prop-types";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
@@ -37,6 +36,16 @@ const CartItemCheckout = ({cartItem}) => {
       </Card>
     </Col>
   );
+};
+
+CartItemCheckout.propTypes = {
+  cartItem: PropTypes.shape({
+    course: PropTypes.shape({
+      picture: PropTypes.string,
+      title: PropTypes.string,
+      price: PropTypes.number,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default CartItemCheckout;

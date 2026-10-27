@@ -16,9 +16,6 @@ import con3 from "../../../images/aniket_iit18.jpg";
 const HomePage = () => {
   const { user} = useContext(UserContext);
   console.log(user);
-  const logout = () => {
-    window.open("http://localhost:5000/auth/logout", "_self");
-  };
   return (
     <>
       <section
@@ -37,7 +34,7 @@ const HomePage = () => {
 
           <p className="lead my-5">
             We are dedicated to providing high-quality online courses in cutting-edge technology fields. 
-            Whether you're starting your learning journey or advancing your expertise,
+            Whether you&apos;re starting your learning journey or advancing your expertise,
             we offer courses designed to cater to all levels, from beginners to experts. 
             Our content is tailored to meet the needs of diverse learners, 
             empowering students of all ages to excel in the world of technology.
@@ -279,7 +276,7 @@ const HomePage = () => {
                       <b>Age:</b> 17
                     </p>
                     <p>
-                      "The technology engineering courses I enrolled in were
+                      &quot;The technology engineering courses I enrolled in were
                       truly outstanding. The Software Engineering course
                       equipped me with practical software development skills and
                       taught me how to work effectively in a team. The Database
@@ -290,7 +287,7 @@ const HomePage = () => {
                       techniques to secure systems. The instructors were highly
                       experienced, and the course content was engaging and
                       up-to-date. I am grateful for the knowledge gained from
-                      these courses."
+                      these courses.&quot;
                     </p>
                   </div>
                   <div className="col-1"></div>
@@ -316,7 +313,7 @@ const HomePage = () => {
                       <b>Age:</b> 20
                     </p>
                     <p>
-                      "I am extremely satisfied with the technology engineering
+                      &quot;I am extremely satisfied with the technology engineering
                       courses I have taken. The Introduction to Computer Science
                       course provided a solid foundation and helped me
                       understand the core concepts. The Data Structures and
@@ -326,7 +323,7 @@ const HomePage = () => {
                       materials were comprehensive, and the instructors were
                       knowledgeable and supportive. I feel well-prepared to
                       pursue further studies and apply these skills in
-                      real-world projects."
+                      real-world projects.&quot;
                     </p>
                   </div>
                   <div className="col-1"></div>
@@ -352,7 +349,7 @@ const HomePage = () => {
                       <b>Age:</b> 17
                     </p>
                     <p>
-                      "The technology engineering courses I completed were
+                      &quot;The technology engineering courses I completed were
                       exceptional. The Networking Fundamentals course deepened
                       my understanding of computer networks and protocols. The
                       Cloud Computing course introduced me to the concepts and
@@ -363,7 +360,7 @@ const HomePage = () => {
                       develop IoT solutions. The courses were well-structured,
                       and the instructors were highly knowledgeable and
                       supportive. I am grateful for the invaluable skills gained
-                      through these courses."
+                      through these courses.&quot;
                     </p>
                   </div>
                   <div className="col-1"></div>
@@ -407,7 +404,7 @@ const HomePage = () => {
       <section id="contributors" className="p-5 bg-secondary">
           <h2 className="text-center text-white">Meet Our Contributors</h2>
           <p className="lead text-center text-white mb-4">
-            "Alone we can do so little; together we can do so much." — Helen Keller
+            &quot;Alone we can do so little; together we can do so much.&quot; — Helen Keller
           </p>
           <div className="row g-4">
             {/* Contributor 1 */}
@@ -422,7 +419,7 @@ const HomePage = () => {
                   />
                   <h5 className="card-title mb-3">Krish Patel</h5>
                   <p className="card-text">
-                    "The best way to predict the future is to create it."
+                    &quot;The best way to predict the future is to create it.&quot;
                   </p>
                 </div>
               </div>
@@ -445,7 +442,7 @@ const HomePage = () => {
                   />
                   <h5 className="card-title mb-3">Ashutosh Kumar</h5>
                   <p className="card-text">
-                    "Education is the most powerful weapon you can use to change the world."
+                    &quot;Education is the most powerful weapon you can use to change the world.&quot;
                   </p>
                 </div>
               </div>
@@ -463,7 +460,7 @@ const HomePage = () => {
                   />
                   <h5 className="card-title mb-3">Aniket Gupta</h5>
                   <p className="card-text">
-                    "Learning never exhausts the mind."
+                    &quot;Learning never exhausts the mind.&quot;
                   </p>
                 </div>
               </div>

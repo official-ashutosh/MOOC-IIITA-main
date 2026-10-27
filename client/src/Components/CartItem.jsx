@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -52,6 +52,19 @@ const CartItem = ({ cartItem, onRemove }) => {
       </Card>
     </Col>
   );
+};
+
+CartItem.propTypes = {
+  cartItem: PropTypes.shape({
+    course: PropTypes.shape({
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      picture: PropTypes.string,
+      title: PropTypes.string,
+      price: PropTypes.number,
+      description: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
 
 export default CartItem;

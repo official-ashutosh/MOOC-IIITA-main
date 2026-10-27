@@ -1,25 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import CourseIntroView from "../../Components/CourseIntroView";
 import AnimatedProgressBar from "../../Components/AnimatedProgressBar";
-import { MyAlert } from "../../Components/CustomAlert";
 import DocumentCard from "../../Components/DocumentCard";
 import { getCourse } from "../../services/coursesService";
-import {
-  deleteDocument,
-  getLessonDocuments,
-} from "../../services/documentService";
+import { getLessonDocuments } from "../../services/documentService";
 import { getLessonComments } from "../../services/commentService";
 import CommentCard from "../../Components/CommentCard";
 
 const LessonDetailsPage = () => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { state } = useLocation();
-  const [alert, setAlert] = useState({
-    message: "",
-    variant: "",
-  });
   const [formData, setFormData] = useState({
     _id: "",
     userId: "",
@@ -43,31 +34,41 @@ const LessonDetailsPage = () => {
   });
 
   useEffect(() => {
-    setTimeout(async () => {
+    let active = true;
+
+    const loadLessonDetails = async () => {
       try {
         const { course, averageStars } = await getCourse(state.courseId);
         const documents = await getLessonDocuments(state._id);
         const comments = await getLessonComments(state._id);
-        setFormData({
-          ...formData,
-          _id: course._id,
-          userId: course.userId,
-          picture: course.picture,
-          title: course.title,
-          price: course.price,
-          description: course.description,
-          topic: course.topic,
-          instructorName: course.instructorName,
-          averageStars: averageStars,
-          documents,
-          comments,
-        });
+        if (active) {
+          setFormData((currentFormData) => ({
+            ...currentFormData,
+            _id: course._id,
+            userId: course.userId,
+            picture: course.picture,
+            title: course.title,
+            price: course.price,
+            description: course.description,
+            topic: course.topic,
+            instructorName: course.instructorName,
+            averageStars,
+            documents,
+            comments,
+          }));
+        }
       } catch (error) {
         console.log(error.message);
+      } finally {
+        if (active) setLoading(false);
       }
-      setLoading(false);
-    }, 0);
-  }, []);
+    };
+
+    loadLessonDetails();
+    return () => {
+      active = false;
+    };
+  }, [state._id, state.courseId]);
 
   return (
     <>
@@ -105,9 +106,6 @@ const LessonDetailsPage = () => {
                     </p>
                   ) : (
                     <>
-                      {alert.message != "" && (
-                        <MyAlert msg={alert.message} variant={alert.variant} />
-                      )}
                       {formData.documents.map((document) => (
                         <div key={document._id}>
                           <DocumentCard document={document}></DocumentCard>
@@ -121,9 +119,6 @@ const LessonDetailsPage = () => {
                     <p className="fs-2 text-center text-danger">No comment.</p>
                   ) : (
                     <>
-                      {alert.message != "" && (
-                        <MyAlert msg={alert.message} variant={alert.variant} />
-                      )}
                       {formData.comments.map((comment) => (
                         <div key={comment._id}>
                           <CommentCard comment={comment}></CommentCard>

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import {
   changeCourseVisibility,
   searchUserCourses,
@@ -14,11 +14,6 @@ import { Link } from "react-router-dom";
 const MyCreatedCourses = () => {
   const { user, setUser } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
-  const [alert, setAlert] = useState({
-    message: "",
-    variant: "",
-  });
-
   const [searchValue, setSearchValue] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("ALL");
   const [selectedVisibility, setSelectedVisibility] = useState("ALL");
@@ -41,12 +36,11 @@ const MyCreatedCourses = () => {
   const handleChangeVisibility = async (courseId) => {
     if (confirm("Confirm change visibility?")) {
       try {
-        const data = await changeCourseVisibility(courseId);
-        setAlert({ ...alert, message: data.success, variant: "success" });
+        await changeCourseVisibility(courseId);
+        await updateDisplay();
       } catch (error) {
-        setAlert({ ...alert, message: error.message, variant: "danger" });
+        console.error("Error updating course visibility:", error);
       }
-      setAlert({ ...alert, message: "", variant: "" });
     }
   };
 
@@ -55,7 +49,7 @@ const MyCreatedCourses = () => {
     await updateDisplay();
   };
 
-  const updateDisplay = async () => {
+  const updateDisplay = useCallback(async () => {
     setLoading(true);
     const data = await searchUserCourses({
       keyword: searchValue,
@@ -64,20 +58,20 @@ const MyCreatedCourses = () => {
       page: currentPage,
       sort: selectedSort,
     });
-    setUser({
-      ...user,
+    setUser((currentUser) => ({
+      ...currentUser,
       createdCourses: data.courses,
-    });
+    }));
     setPages(Array.from({ length: data.totalPages }, (_, index) => index + 1));
     setTotalPages(data.totalPages);
     setLoading(false);
-  };
+  }, [searchValue, selectedVisibility, selectedTopic, currentPage, selectedSort, setUser]);
 
   useEffect(() => {
     setTimeout(async () => {
       await updateDisplay();
     }, 100);
-  }, [selectedTopic, selectedVisibility, selectedSort, currentPage, alert]);
+  }, [updateDisplay]);
 
   return (
     <>
@@ -100,7 +94,7 @@ const MyCreatedCourses = () => {
                 className="lead"
                 style={{ fontFamily: "'Times New Roman', serif", fontStyle: "italic" }}
               >
-                Browse and explore the courses you've created to inspire others!
+                Browse and explore the courses you&apos;ve created to inspire others!
               </p>
             </div>
             <div className="col-md-6">

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { getCart } from "../../services/cartsService";
 import CartItem from "../../Components/CartItem";
 import Container from "react-bootstrap/Container";
@@ -19,15 +19,12 @@ const CartPage = () => {
   const { setItemCount } = useContext(CartContext);
   const [isEmptyCart, setIsEmptyCart] = useState(false);
   const [canCheckout, setCanCheckout] = useState(true);
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const data = await getCart();
       if (data) {
         setCartItems(data.courseDetails);
+        setItemCount(data.courseDetails.length);
         updateTotalPrice(data.courseDetails);
         if (data.courseDetails.length === 0) {
           setCanCheckout(false);
@@ -38,8 +35,12 @@ const CartPage = () => {
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
-  };
-  console.log("item:" , cartItems)
+  }, [setItemCount]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   const updateTotalPrice = (items) => {
     const total = items.reduce((acc, item) => acc + item.course.price, 0);
     setTotalPrice(total);

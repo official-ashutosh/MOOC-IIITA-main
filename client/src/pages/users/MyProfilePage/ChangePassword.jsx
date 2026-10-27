@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Button, Col, Container, Row, Card, Form } from "react-bootstrap";
 import { UserContext } from "../../../contexts/UserContext";
 import userImage from "../../../../images/user.png";

@@ -1,9 +1,13 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import Alert from "react-bootstrap/Alert";
 
 const MyAlert = ({ msg, variant }) => {
   const [show, setShow] = useState(true);
-  setTimeout(() => setShow(false), 2000);
+  useEffect(() => {
+    const timeout = setTimeout(() => setShow(false), 2000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <>
@@ -15,6 +19,11 @@ const MyAlert = ({ msg, variant }) => {
       )}
     </>
   );
+};
+
+MyAlert.propTypes = {
+  msg: PropTypes.node.isRequired,
+  variant: PropTypes.string.isRequired,
 };
 
 export { MyAlert };

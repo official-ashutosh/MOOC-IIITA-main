@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const CourseIntroView = ({ formData, children }) => {
   return (
     <>
@@ -65,6 +67,19 @@ const CourseIntroView = ({ formData, children }) => {
       </section>
     </>
   );
+};
+
+CourseIntroView.propTypes = {
+  formData: PropTypes.shape({
+    picture: PropTypes.string,
+    title: PropTypes.string,
+    instructorName: PropTypes.string,
+    averageStars: PropTypes.number,
+    price: PropTypes.number,
+    topic: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
+  children: PropTypes.node,
 };
 
 export default CourseIntroView;

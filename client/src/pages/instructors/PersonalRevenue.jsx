@@ -1,12 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Container from "react-bootstrap/Container";
-import Alert from "../../Components/Alert";
 
-import DataTable, {
-  Alignment,
-  createTheme,
-  defaultThemes,
-} from "react-data-table-component";
+import DataTable from "react-data-table-component";
 
 import { customStyles } from "../../Components/customStyles/datatableCustom";
 
@@ -17,9 +12,6 @@ const PersonalRevenue = () => {
   const { statisticsInstructor, setStatisticsInstructor } = useContext(
     StatisticsInstructorContext
   );
-  const [error] = useState(null);
-  const [success] = useState(null);
-
   useEffect(() => {
     setTimeout(async () => {
       const statistics = await getAllInvoiceItemsInstructor();
@@ -29,7 +21,7 @@ const PersonalRevenue = () => {
         totalRevenueInstructor: statistics.totalRevenueInstructor,
       });
     }, 0);
-  }, []);
+  }, [setStatisticsInstructor]);
 
   const columns = [
     {
@@ -54,8 +46,6 @@ const PersonalRevenue = () => {
     <Container>
       <h1 className="mt-3 mb-3"> Personal Revenue </h1>
 
-      {success && <Alert msg={success} type="success" />}
-      {error && <Alert msg={error} type="error" />}
       <div className="text-end mb-3 mt-3">
         <div className="input-group news-input">
           <span className="input-group-text">

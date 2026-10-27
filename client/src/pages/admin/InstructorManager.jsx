@@ -5,24 +5,14 @@ import {
   getUserListByRole,
 } from "../../services/usersService";
 import Role from "../../../../models/RoleEnum";
-import Container from "react-bootstrap/Container";
-import Alert from "../../Components/Alert";
-
-import DataTable, {
-  Alignment,
-  createTheme,
-  defaultThemes,
-} from "react-data-table-component";
-import FormCheckInput from "react-bootstrap/FormCheckInput";
+import DataTable from "react-data-table-component";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Navbar from "react-bootstrap/Navbar";
 import AdminNavBar from "../../Components/AdminNavBar";
 import {
   Button,
   Image,
   Modal,
-  Table,
   Toast,
   ToastContainer,
 } from "react-bootstrap";
@@ -43,7 +33,7 @@ const InstructorManager = () => {
       const instructors = await getUserListByRole(Role.INSTRUCTOR);
       setUsers({ instructors });
     }, 0);
-  }, []);
+  }, [setUsers]);
 
   const cancelPopupStatus = () => {
     setShowPopup(false);

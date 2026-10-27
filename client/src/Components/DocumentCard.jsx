@@ -1,9 +1,12 @@
+import PropTypes from "prop-types";
+
 const DocumentCard = ({ document, children }) => {
   return (
     <>
       <div className="mb-5">
         <div className={`card h-100 bg-danger-subtle`}>
           <iframe
+            title={`${document.title} video`}
             src={`https://player.cloudinary.com/embed/?cloud_name=dinyrr5ad&public_id=${document.cloudinary}`}
             width="640"
             height="360"
@@ -29,6 +32,16 @@ const DocumentCard = ({ document, children }) => {
       </div>
     </>
   );
+};
+
+DocumentCard.propTypes = {
+  document: PropTypes.shape({
+    cloudinary: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    createdAt: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  }).isRequired,
+  children: PropTypes.node,
 };
 
 export default DocumentCard;

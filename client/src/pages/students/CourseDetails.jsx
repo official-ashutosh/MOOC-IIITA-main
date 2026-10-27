@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { deleteLesson, getCourseLessons } from "../../services/lessonsService";
+import { Link, useLocation } from "react-router-dom";
+import { getCourseLessons } from "../../services/lessonsService";
 import CourseIntroView from "../../Components/CourseIntroView";
 import AnimatedProgressBar from "../../Components/AnimatedProgressBar";
 import LessonCard from "../../Components/LessonCard";
-import { deleteCourse } from "../../services/coursesService";
-import { MyAlert } from "../../Components/CustomAlert";
 import { getCourse } from "../../services/coursesService";
 
 const CourseDetails = () => {
-  const navigate = useNavigate();
   const { state } = useLocation();
   const [loading, setLoading] = useState(true);
-  const [alert, setAlert] = useState({
-    message: "",
-    variant: "",
-  });
   const [formData, setFormData] = useState({
     _id: state._id,
     userId: state.userId,
@@ -30,18 +23,31 @@ const CourseDetails = () => {
   });
 
   useEffect(() => {
-    console.log("form data", formData);
-    setTimeout(async () => {
-      const { reviews, averageStars } = await getCourse(formData._id);
-      const lessons = await getCourseLessons(formData._id);
-      setFormData({
-        ...formData,
-        averageStars,
-        lessons,
-      });
-      setLoading(false);
-    }, 0);
-  }, []);
+    let active = true;
+
+    const loadCourse = async () => {
+      try {
+        const { averageStars } = await getCourse(state._id);
+        const lessons = await getCourseLessons(state._id);
+        if (active) {
+          setFormData((currentFormData) => ({
+            ...currentFormData,
+            averageStars,
+            lessons,
+          }));
+        }
+      } catch (error) {
+        console.error("Error loading course details:", error);
+      } finally {
+        if (active) setLoading(false);
+      }
+    };
+
+    loadCourse();
+    return () => {
+      active = false;
+    };
+  }, [state._id]);
 
   return (
     <>
@@ -60,11 +66,6 @@ const CourseDetails = () => {
                 </p>
               ) : (
                 <>
-                  {alert.message != "" && (
-                    <div style={{ width: "1000px" }}>
-                      <MyAlert msg={alert.message} variant={alert.variant} />
-                    </div>
-                  )}
                   {formData.lessons.map((lesson) => (
                     <div key={lesson._id}>
                       <LessonCard lesson={lesson}>

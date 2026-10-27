@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const CourseCard = ({ course, children }) => {
   return (
     <div className={`card h-100 ${course.visibility ? "" : "opacity-50"}`}>
@@ -26,6 +28,19 @@ const CourseCard = ({ course, children }) => {
       </div>
     </div>
   );
+};
+
+CourseCard.propTypes = {
+  course: PropTypes.shape({
+    visibility: PropTypes.bool,
+    picture: PropTypes.string,
+    title: PropTypes.string,
+    instructorName: PropTypes.string,
+    createdAt: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+    price: PropTypes.number,
+    topic: PropTypes.string,
+  }).isRequired,
+  children: PropTypes.node,
 };
 
 export default CourseCard;

@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
 const ContactUsPage = () => {
@@ -9,7 +8,7 @@ const ContactUsPage = () => {
           Contact Us
         </h2>
         <p className="text-center mb-5" style={styles.subHeader}>
-          "The beautiful thing about learning is that no one can take it away from you."
+          &quot;The beautiful thing about learning is that no one can take it away from you.&quot;
           <br />— B.B. King
         </p>
 

@@ -19,7 +19,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const requiredEnvironment = ["SECRET", "SESSION_SECRET", "MONGODB_URI", "CLIENT_URL"];
+const requiredEnvironment = [
+  "SECRET",
+  "SESSION_SECRET",
+  "MONGODB_URI",
+  "CLIENT_URL",
+  "EMAIL_USER",
+  "EMAIL_PASS",
+  "CLOUD_NAME",
+  "CLOUD_KEY",
+  "CLOUD_SECRET",
+];
 const missingEnvironment = requiredEnvironment.filter((key) => !process.env[key]);
 
 if (missingEnvironment.length > 0) {
@@ -45,6 +55,10 @@ app.use(
   })
 );
 app.use(express.json({ limit: "1mb" }));
+
+app.get("/healthz", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 
 // API routes
 app.use("/api/users", usersRoutes);

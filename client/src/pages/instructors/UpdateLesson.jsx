@@ -56,26 +56,35 @@ const UpdateLesson = () => {
   };
 
   useEffect(() => {
-    setTimeout(async () => {
+    let active = true;
+
+    const loadCourse = async () => {
       try {
         const { course, averageStars } = await getCourse(state.courseId);
-        setFormData({
-          ...formData,
-          _id: course._id,
-          userId: course.userId,
-          picture: course.picture,
-          title: course.title,
-          price: course.price,
-          description: course.description,
-          topic: course.topic,
-          instructorName: course.instructorName,
-          averageStars: averageStars,
-        });
+        if (active) {
+          setFormData((currentFormData) => ({
+            ...currentFormData,
+            _id: course._id,
+            userId: course.userId,
+            picture: course.picture,
+            title: course.title,
+            price: course.price,
+            description: course.description,
+            topic: course.topic,
+            instructorName: course.instructorName,
+            averageStars,
+          }));
+        }
       } catch (error) {
         console.log(error.message);
       }
-    }, 0);
-  }, []);
+    };
+
+    loadCourse();
+    return () => {
+      active = false;
+    };
+  }, [state.courseId]);
 
   return (
     <>

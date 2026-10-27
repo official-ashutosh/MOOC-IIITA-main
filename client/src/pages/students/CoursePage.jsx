@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { searchCourses } from "../../services/coursesService";
 import AnimatedProgressBar from "../../Components/AnimatedProgressBar";
 import CourseCard from "../../Components/CourseCard";
@@ -22,12 +22,10 @@ const CoursePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [pages, setPages] = useState([]);
-  const [notification] = useState({ message: "", type: "" });
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("success");
   const { setItemCount } = useContext(CartContext);
-  const [cartItems, setCartItems] = useState([]);
 
   const topics = [
     "ALL",
@@ -46,13 +44,12 @@ const CoursePage = () => {
       return;
     }
     try {
-      const result = await addToCart(courseId);
+      await addToCart(courseId);
       setToastMessage("Successfully Added to Cart!");
       setToastType("success");
       setShowToast(true);
       setTimeout(() => setShowToast(false), 5000);
-      fetchData();
-      setItemCount(cartItems.length + 1);
+      await fetchData();
     } catch (error) {
       setToastMessage(error.toString());
       setToastType("danger");
@@ -62,8 +59,11 @@ const CoursePage = () => {
   };
 
   const handleSearch = async () => {
-    setCurrentPage(1);
-    await updateDisplay();
+    if (currentPage === 1) {
+      await updateDisplay();
+    } else {
+      setCurrentPage(1);
+    }
   };
 
   // Simpler Toast Component
@@ -90,41 +90,46 @@ const CoursePage = () => {
       </ToastContainer>
     );
   };
-  const updateDisplay = async () => {
+  const updateDisplay = useCallback(async () => {
     setLoading(true);
-    const data = await searchCourses({
-      keyword: searchValue,
-      topic: selectedTopic,
-      page: currentPage,
-      sort: selectedSort,
-    });
-    setCourses({ ...courses, listCourses: data.courses });
-    setPages(Array.from({ length: data.totalPages }, (_, index) => index + 1));
-    setTotalPages(data.totalPages);
-    setLoading(false);
-  };
+    try {
+      const data = await searchCourses({
+        keyword: searchValue,
+        topic: selectedTopic,
+        page: currentPage,
+        sort: selectedSort,
+      });
+      setCourses((currentCourses) => ({
+        ...currentCourses,
+        listCourses: data.courses,
+      }));
+      setPages(Array.from({ length: data.totalPages }, (_, index) => index + 1));
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.error("Error loading courses:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [searchValue, selectedTopic, currentPage, selectedSort, setCourses]);
 
   useEffect(() => {
-    fetchData();
-    if (notification.message) {
-      if (notification.type === "success") {
-        updateDisplay();
-      }
-    }
-    setTimeout(async () => {
-      await updateDisplay();
-    }, 100);
-  }, [selectedTopic, selectedSort, currentPage, notification]);
-  const fetchData = async () => {
+    updateDisplay();
+  }, [updateDisplay]);
+
+  const fetchData = useCallback(async () => {
     try {
       const data = await getCart();
       if (data) {
-        setCartItems(data.courseDetails);
+        setItemCount(data.courseDetails.length);
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
-  };
+  }, [setItemCount]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
   return (
     <>
       {renderToast()}

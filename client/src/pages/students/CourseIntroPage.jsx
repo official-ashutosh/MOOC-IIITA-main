@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import AnimatedProgressBar from "../../Components/AnimatedProgressBar";
 import { getCourse } from "../../services/coursesService";
@@ -8,14 +8,14 @@ import { Toast, ToastContainer } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../../contexts/CartContext";
 import { addToCart, getCart } from "../../services/cartsService.js";
-import { Card, Container, Row, Col, Pagination } from "react-bootstrap";
+import { Container, Pagination } from "react-bootstrap";
 import { getMyCourse } from "../../services/invoiceService.js";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const CourseIntroPage = () => {
   const location = useLocation();
   console.log("Received state:", location.state);
-  const [myCourses, setMyCourses] = useState([]);
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
   const { state } = useLocation();
   console.log("du lieu 2: ", state);
@@ -46,7 +46,7 @@ const CourseIntroPage = () => {
       navigate("/login");
     } else {
       try {
-        const result = await addToCart(courseId);
+        await addToCart(courseId);
         setToastMessage("Successfully Added to Cart!");
         setToastType("success");
         setShowToast(true);
@@ -101,22 +101,26 @@ const CourseIntroPage = () => {
   };
 
   useEffect(() => {
+    if (!location.state?._id) {
+      setLoading(false);
+      return;
+    }
+
     checkLoginStatus();
     fetchData();
     setTimeout(async () => {
-      const { reviews, averageStars } = await getCourse(formData._id);
-      setFormData({
-        ...formData,
+      const { reviews, averageStars } = await getCourse(location.state._id);
+      setFormData((currentFormData) => ({
+        ...currentFormData,
         averageStars,
         reviews,
-      });
+      }));
 
       setLoading(false);
     }, 0);
     const fetchMyCourses = async () => {
       try {
         const data = await getMyCourse();
-        setMyCourses(data.courses || []);
         setIsCoursePurchased(
           data.courses.some((course) => course._id === location.state._id)
         );
@@ -129,6 +133,10 @@ const CourseIntroPage = () => {
 
     fetchMyCourses();
   }, [location.state._id]);
+
+  if (!location.state?._id) {
+    return <Navigate to="/list-courses" replace />;
+  }
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -187,6 +195,14 @@ const CourseIntroPage = () => {
         </Container>
       </section>
     );
+  };
+
+  ReviewsSection.propTypes = {
+    reviewsPerPage: PropTypes.number.isRequired,
+    totalReviews: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    handlePageChange: PropTypes.func.isRequired,
+    reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   return (
