@@ -5,16 +5,12 @@ import {
   Card,
   Form,
   Button,
-  InputGroup,
 } from "react-bootstrap";
-import mongoose from "mongoose";
 import Alert from "../../Components/Alert";
 import { useState } from "react";
-import React from "react";
 import { checkEmailUser } from "../../services/usersService";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import { set } from "mongoose";
 import logo from "../../../images/MOOC@IIITA_logo.png";
 import successImg from "../../../images/success.png";
 
@@ -23,7 +19,6 @@ const ForgotPassword = () => {
   const [showDoneSend, setShowDoneSend] = useState(false);
   //error State
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
   const [email, setEmail] = useState("");
 
   //Handle login
@@ -52,7 +47,7 @@ const ForgotPassword = () => {
           <h1 className="my-5 display-3 fw-bold ls-tight text-info-emphasis px-3">
             Forgot Password Page <br />
             <span className="text-dark-emphasis h3">
-              Provide your account's email to reset your password
+              Provide your account&apos;s email to reset your password
             </span>
           </h1>
 
@@ -70,7 +65,7 @@ const ForgotPassword = () => {
             <Card.Body className="p-5 shadow">
               <Row>
                 <h4 className="d-flex justify-content-center text-align center mb-4">
-                  Fill in your account's email
+                  Fill in your account&apos;s email
                 </h4>
               </Row>
               <Row>

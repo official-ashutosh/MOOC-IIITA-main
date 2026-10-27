@@ -1,6 +1,5 @@
 import Alert from "../../Components/Alert";
 import { useState } from "react";
-import React from "react";
 import { resetPasswordUser } from "../../services/usersService";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -10,9 +9,7 @@ import {
   Card,
   Form,
   Button,
-  InputGroup,
 } from "react-bootstrap";
-import { set } from "mongoose";
 import { Modal } from "react-bootstrap";
 import logo from "../../../images/MOOC@IIITA_logo.png";
 import success from "../../../images/success.png";

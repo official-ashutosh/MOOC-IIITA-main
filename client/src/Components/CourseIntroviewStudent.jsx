@@ -22,7 +22,7 @@ const CourseIntroViewStudent = ({ formData, children }) => {
                   className="badge text-bg-primary text-wrap mb-5"
                   style={{ height: "30px" }}
                 >
-                  <p className="lead">🎓​{formData.instructorName}</p>
+                  <p className="lead">🎓{formData.instructorName}</p>
                   <div className="text-warning">
                     <p className="lead">
                       {[...Array(5)].map((_, index) => {
@@ -55,7 +55,7 @@ const CourseIntroViewStudent = ({ formData, children }) => {
                       className="badge text-bg-secondary text-wrap"
                       style={{ height: "30px" }}
                     >
-                      <p className="lead">​​​{formData.topic}</p>
+                      <p className="lead">{formData.topic}</p>
                     </div>
                   </div>
                 </div>

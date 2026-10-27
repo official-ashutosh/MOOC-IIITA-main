@@ -49,7 +49,7 @@ MOOC-IIITA-main-1/
 
 ### Prerequisites
 
-- Node.js (v16+ recommended)
+- Node.js 20 or later
 - npm or yarn
 - MongoDB (local or Atlas)
 
@@ -65,14 +65,18 @@ git clone https://github.com/official-ashutosh/MOOC-IIITA-main
 npm install
 ```
 
-- Create a `.env` file in the root with:
+- Copy `.env.example` to `.env` and set the required values:
 
 ```env
 SECRET=your_jwt_secret
+SESSION_SECRET=your_session_secret
 MONGODB_URI=your_mongodb_connection_string
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_key
-CLOUDINARY_API_SECRET=your_cloudinary_secret
+CLIENT_URL=http://localhost:5173
+CLOUD_NAME=your_cloudinary_name
+CLOUD_KEY=your_cloudinary_key
+CLOUD_SECRET=your_cloudinary_secret
+EMAIL_USER=your_email_address
+EMAIL_PASS=your_email_app_password
 ```
 
 - Start the backend server:

@@ -2,7 +2,7 @@ import {Container, Row, Col, Card, Form, Button,} from "react-bootstrap";
 import Alert from "../../Components/Alert";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CDBBtn, CDBIcon } from "cdbreact";
+import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import {getUser, loginUser} from "../../services/usersService";
 import { UserContext } from "../../contexts/UserContext";
 import Role from "../../../../models/RoleEnum";
@@ -129,39 +129,42 @@ const Login = () => {
         <div className="other-login border-top pt-4">
           <p className="text-center text-muted mb-3">Or login with</p>
           <div className="d-flex justify-content-center gap-3">
-            <CDBBtn
-              color="white"
-              className="fs-5 p-2"
+            <Button
+              variant="light"
+              className="fs-5 p-2 rounded-circle shadow-sm"
+              aria-label="Continue with Facebook"
               style={{
-                borderRadius: "50%",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                width: "44px",
+                height: "44px",
               }}
               onClick={() => (window.location.hash = "facebook")}
             >
-              <CDBIcon fab icon="facebook-f" />
-            </CDBBtn>
-            <CDBBtn
-              color="white"
-              className="fs-5 p-2"
+              <FaFacebookF aria-hidden="true" />
+            </Button>
+            <Button
+              variant="light"
+              className="fs-5 p-2 rounded-circle shadow-sm"
+              aria-label="Continue with GitHub"
               style={{
-                borderRadius: "50%",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                width: "44px",
+                height: "44px",
               }}
               onClick={() => (window.location.hash = "github")}
             >
-              <CDBIcon fab icon="github" />
-            </CDBBtn>
-            <CDBBtn
-              color="white"
-              className="fs-5 p-2"
+              <FaGithub aria-hidden="true" />
+            </Button>
+            <Button
+              variant="light"
+              className="fs-5 p-2 rounded-circle shadow-sm"
+              aria-label="Continue with Google"
               style={{
-                borderRadius: "50%",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                width: "44px",
+                height: "44px",
               }}
               onClick={() => (window.location.hash = "google")}
             >
-              <CDBIcon fab icon="google-plus-g" />
-            </CDBBtn>
+              <FaGoogle aria-hidden="true" />
+            </Button>
           </div>
         </div>
       </Form>

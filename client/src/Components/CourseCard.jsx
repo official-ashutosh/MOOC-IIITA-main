@@ -15,7 +15,7 @@ const CourseCard = ({ course, children }) => {
       </div>
       <div className="card-body">
         <div className="d-flex align-items-center">
-          <div className={`lead text-success`}>💲​{course.price}</div>
+          <div className={`lead text-success`}>💲{course.price}</div>
           <div className="flex-grow-1">
             <p className="text-primary text-end">{course.topic}</p>
           </div>

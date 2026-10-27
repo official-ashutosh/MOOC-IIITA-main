@@ -2,20 +2,13 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+This project does not publish versioned releases. The latest code on the
+`main` branch is the only version that receives security fixes.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Report vulnerabilities privately through
+[GitHub Security Advisories](https://github.com/official-ashutosh/MOOC-IIITA-main/security/advisories/new).
+Do not disclose vulnerabilities in public issues. Include the affected files
+or versions, steps to reproduce, and any known impact. Maintainers will use the
+private advisory to coordinate follow-up and disclosure.

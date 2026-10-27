@@ -1,52 +1,51 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { lazy, Suspense, useContext, useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
-import Login from "./pages/users/Login";
-import ForgotPassword from "./pages/users/ForgotPassword";
-import HomePage from "./pages/users/HomePage";
-import MyProfilePage from "./pages/users/MyProfilePage/MyProfilePage";
-import ResetPassword from "./pages/users/ResetPassword";
-import NotFoundPage from "./pages/NotFoundPage";
+import Loading from "./pages/Loading";
 import GuestRoutes from "../Routes/GuestRoutes";
-import Register from "./pages/users/Register";
-import UserManager from "./pages/admin/UserManager";
-import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 import Role from "../../models/RoleEnum.js";
 import { getUser } from "./services/usersService";
-import MyCreatedCourses from "./pages/instructors/MyCreatedCourses.jsx";
-import Loading from "./pages/Loading";
-import CreateCourse from "./pages/instructors/CreateCourse";
-import CartPage from "./pages/students/CartPage";
-import PersonalRevenue from "./pages/instructors/PersonalRevenue";
-import InstructorManager from "./pages/admin/InstructorManager";
-import CoursePage from "./pages/students/CoursePage";
-import EditCourse from "./pages/instructors/EditCourse.jsx";
-import EditProfile from "./pages/users/MyProfilePage/EditProfile";
-import CourseManager from "./pages/admin/CourseManager";
 
-import RevenueStatistic from "./pages/admin/RevenueStatistic";
-import UpdateCourseIntro from "./pages/instructors/UpdateCourseIntro.jsx";
-import UserDetail from "./pages/admin/UserDetail";
-
-import ChangePassword from "./pages/users/MyProfilePage/ChangePassword";
-import UpdateCourseDetails from "./pages/instructors/UpdateCourseDetails";
-import CreateLesson from "./pages/instructors/CreateLesson";
-import CheckoutPage from "./pages/students/CheckoutPage";
-import MyCoursePage from "./pages/students/MyCoursePage";
-import UpdateLesson from "./pages/instructors/UpdateLesson";
-import UpdateLessonDetails from "./pages/instructors/UpdateLessonDetails";
-import CreateDocument from "./pages/instructors/CreateDocument";
-import CreateComment from "./pages/instructors/CreateComment.jsx";
-import InstructorRegister from "./pages/admin/InstructorRegister";
-import CourseIntroPage from "./pages/students/CourseIntroPage";
-import OTPInput from "./pages/users/OTPInput.jsx";
-import CourseDetails from "./pages/students/CourseDetails.jsx";
-import LessonDetailsPage from "./pages/students/LessonDetailsPage.jsx";
-import FeedbackForm from "./pages/users/Feedback.jsx";
-import ThankYou from "./pages/users/Thank.jsx";
-import InstructorApplication from "./pages/instructors/InstructorApplication.jsx";
-import ThankYouPage from "./pages/instructors/ThankYouPage.jsx";
-import ContactUsPage from "./pages/users/contactus.jsx";
+const Login = lazy(() => import("./pages/users/Login"));
+const ForgotPassword = lazy(() => import("./pages/users/ForgotPassword"));
+const HomePage = lazy(() => import("./pages/users/HomePage"));
+const MyProfilePage = lazy(() => import("./pages/users/MyProfilePage/MyProfilePage"));
+const ResetPassword = lazy(() => import("./pages/users/ResetPassword"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+const Register = lazy(() => import("./pages/users/Register"));
+const UserManager = lazy(() => import("./pages/admin/UserManager"));
+const MyCreatedCourses = lazy(() => import("./pages/instructors/MyCreatedCourses"));
+const CreateCourse = lazy(() => import("./pages/instructors/CreateCourse"));
+const CartPage = lazy(() => import("./pages/students/CartPage"));
+const PersonalRevenue = lazy(() => import("./pages/instructors/PersonalRevenue"));
+const InstructorManager = lazy(() => import("./pages/admin/InstructorManager"));
+const CoursePage = lazy(() => import("./pages/students/CoursePage"));
+const EditCourse = lazy(() => import("./pages/instructors/EditCourse"));
+const EditProfile = lazy(() => import("./pages/users/MyProfilePage/EditProfile"));
+const CourseManager = lazy(() => import("./pages/admin/CourseManager"));
+const RevenueStatistic = lazy(() => import("./pages/admin/RevenueStatistic"));
+const UpdateCourseIntro = lazy(() => import("./pages/instructors/UpdateCourseIntro"));
+const UserDetail = lazy(() => import("./pages/admin/UserDetail"));
+const ChangePassword = lazy(() => import("./pages/users/MyProfilePage/ChangePassword"));
+const UpdateCourseDetails = lazy(() => import("./pages/instructors/UpdateCourseDetails"));
+const CreateLesson = lazy(() => import("./pages/instructors/CreateLesson"));
+const CheckoutPage = lazy(() => import("./pages/students/CheckoutPage"));
+const MyCoursePage = lazy(() => import("./pages/students/MyCoursePage"));
+const UpdateLesson = lazy(() => import("./pages/instructors/UpdateLesson"));
+const UpdateLessonDetails = lazy(() => import("./pages/instructors/UpdateLessonDetails"));
+const CreateDocument = lazy(() => import("./pages/instructors/CreateDocument"));
+const CreateComment = lazy(() => import("./pages/instructors/CreateComment"));
+const InstructorRegister = lazy(() => import("./pages/admin/InstructorRegister"));
+const CourseIntroPage = lazy(() => import("./pages/students/CourseIntroPage"));
+const OTPInput = lazy(() => import("./pages/users/OTPInput"));
+const CourseDetails = lazy(() => import("./pages/students/CourseDetails"));
+const LessonDetailsPage = lazy(() => import("./pages/students/LessonDetailsPage"));
+const FeedbackForm = lazy(() => import("./pages/users/Feedback"));
+const ThankYou = lazy(() => import("./pages/users/Thank"));
+const InstructorApplication = lazy(() => import("./pages/instructors/InstructorApplication"));
+const ThankYouPage = lazy(() => import("./pages/instructors/ThankYouPage"));
+const ContactUsPage = lazy(() => import("./pages/users/contactus"));
 
 const App = () => {
   const { user, setUser } = useContext(UserContext);
@@ -68,10 +67,11 @@ const App = () => {
         setLoading(false);
       }
     }, 0);
-  }, []);
+  }, [setUser]);
 
   return (
     <BrowserRouter>
+      <Suspense fallback={<Loading />}>
       <Routes>
         {!user.token ||
           (loading && !user.role && <Route index element={<Loading />} />)}
@@ -172,6 +172,7 @@ const App = () => {
           {!loading && <Route path="*" element={<NotFoundPage />} />}
         </Route>
       </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };

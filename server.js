@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -18,23 +19,32 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+const requiredEnvironment = ["SECRET", "SESSION_SECRET", "MONGODB_URI", "CLIENT_URL"];
+const missingEnvironment = requiredEnvironment.filter((key) => !process.env[key]);
+
+if (missingEnvironment.length > 0) {
+  throw new Error(`Missing required environment variables: ${missingEnvironment.join(", ")}`);
+}
 
 app.use(
   cookieSession({
     name: "session",
-    keys: ["key1"],
+    keys: [process.env.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
   })
 );
 
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
-    method: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
-app.use(express.json({ limit: "200mb" }));
+app.use(express.json({ limit: "1mb" }));
 
 // API routes
 app.use("/api/users", usersRoutes);
@@ -56,11 +66,12 @@ app.get("*", (req, res) =>
 );
 
 mongoose
-  .connect('mongodb+srv://tmkoc6465:O0QXw5vqFdPI4olt@kp.dirye.mongodb.net/test')
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Connected to the database");
-    app.listen(process.env.PORT, () => {
-      console.log("Listening on port 5000");
+    const port = process.env.PORT || 5000;
+    app.listen(port, () => {
+      console.log(`Listening on port ${port}`);
     });
   })
   .catch((error) => {

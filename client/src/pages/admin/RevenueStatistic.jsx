@@ -3,6 +3,7 @@ import { StatisticsContext } from "../../contexts/StatisticsContext";
 import { getAllInvoiceItemsAdmin } from "../../services/InvoiceItemService";
 import DataTable from "react-data-table-component";
 import AdminNavBar from "../../Components/AdminNavBar";
+import { Col, Container, Row } from "react-bootstrap";
 
 const RevenueStatistic = () => {
   const { statistics, setStatistics } = useContext(StatisticsContext);
@@ -15,7 +16,7 @@ const RevenueStatistic = () => {
         totalRevenuePage: statistics.totalRevenuePage,
       });
     }, 0);
-  }, []);
+  }, [setStatistics]);
 
   const columns = [
     {

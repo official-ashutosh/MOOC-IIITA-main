@@ -77,7 +77,7 @@ const UpdateCourseDetails = () => {
           <CourseIntroView formData={formData}>
             <Link to="/create-lesson" state={formData}>
               <button className="btn btn-primary me-2">
-                📁​ Create Lesson
+                📁 Create Lesson
               </button>
             </Link>
             <button
